@@ -22,7 +22,7 @@ There is a huge community of people scanning 3D objects, see the hashtags [#obje
 
 Building an interactive map like this is a fun way to introduce people to the data that's out there, and can be a really useful tool for people in this field.
 
-You'll also learn how to visualize and work with this type of data that's becoming more and more ubiqituious, especially as LiDAR scanners become more common via the latest iPhone/iPad devices.
+You'll also learn how to visualize and work with this type of data that's becoming more and more ubiquitous, especially as LiDAR scanners become more common via the latest iPhone/iPad devices.
 
 ## Milestones
 
@@ -52,13 +52,13 @@ To scale up to hundreds (or hundreds of thousands of models) you will need to de
 
 This will allow the user to find any Sketchfab model and add it to your map in real time. See [https://dev.to/omar4ur/how-to-load-sketchfab-models-directly-in-a-threejs-app-5anb](https://dev.to/omar4ur/how-to-load-sketchfab-models-directly-in-a-threejs-app-5anb). 
 
-Alertnatively, or in addition, you can integrate with the [Cesium ion API](https://cesium.com/learn/ion/ion-oauth2/) to allow its users to bring their 3D models to the map. The advantage there is Cesium ion models are already geolocated. 
+Alternatively, or in addition, you can integrate with the [Cesium ion API](https://cesium.com/learn/ion/ion-oauth2/) to allow its users to bring their 3D models to the map. The advantage there is Cesium ion models are already geolocated. 
 
 5. **Develop a UI for positioning models in the app**
 
 For models that users add, it would be nice to be able to position and rotate them within the app. The easiest thing to start with is a simple HTML fields for position and orientation. 
 
-A more sophisticsted system would allow you to translate and rotate within the 3D view directly, similar to 3D modelling programs like Blender.
+A more sophisticated system would allow you to translate and rotate within the 3D view directly, similar to 3D modelling programs like Blender.
 
 6. **Make the backend support any user submitting new models**
 
@@ -68,4 +68,4 @@ Optionally, instead of having it be added to the global map for everyone, let us
 
 7. **Write a blog/article about your project/what you learned**
 
-A really great way to stand out and show your skills to potential emplloyers is to publish an article or a tutorial. There are a lot of topics throughout this project that would make for good candidates for articles. Such as how to build a UI for geolocating 3D models, or the design of your backend, or how you picked the 3D engine based on the strengths and weaknesses of each and the requirements of your project.
+A really great way to stand out and show your skills to potential employers is to publish an article or a tutorial. There are a lot of topics throughout this project that would make for good candidates for articles. Such as how to build a UI for geolocating 3D models, or the design of your backend, or how you picked the 3D engine based on the strengths and weaknesses of each and the requirements of your project.

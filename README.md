@@ -52,6 +52,8 @@ To scale up to hundreds (or hundreds of thousands of models) you will need to de
 
 This will allow the user to find any Sketchfab model and add it to your map in real time. See [https://dev.to/omar4ur/how-to-load-sketchfab-models-directly-in-a-threejs-app-5anb](https://dev.to/omar4ur/how-to-load-sketchfab-models-directly-in-a-threejs-app-5anb). 
 
+Alertnatively, or in addition, you can integrate with the [Cesium ion API](https://cesium.com/learn/ion/ion-oauth2/) to allow its users to bring their 3D models to the map. The advantage there is Cesium ion models are already geolocated. 
+
 5. **Develop a UI for positioning models in the app**
 
 For models that users add, it would be nice to be able to position and rotate them within the app. The easiest thing to start with is a simple HTML fields for position and orientation. 
@@ -63,3 +65,7 @@ A more sophisticsted system would allow you to translate and rotate within the 3
 A user should be able to enter a new model URL (whether Sketchfab or otherwise) and have it appear on the map.
 
 Optionally, instead of having it be added to the global map for everyone, let users share a link to a custom version of the map with their custom model(s). 
+
+7. **Write a blog/article about your project/what you learned**
+
+A really great way to stand out and show your skills to potential emplloyers is to publish an article or a tutorial. There are a lot of topics throughout this project that would make for good candidates for articles. Such as how to build a UI for geolocating 3D models, or the design of your backend, or how you picked the 3D engine based on the strengths and weaknesses of each and the requirements of your project.

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Virtual 3D Museum",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "snowpack dev"
   },

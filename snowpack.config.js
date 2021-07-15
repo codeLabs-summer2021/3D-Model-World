@@ -1,21 +1,11 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
-export const mount = {
-  /* ... */
-};
-export const plugins = [
-  [
-    '@snowpack/plugin-webpack',
-    {
-      /* Plugin Options (see https://www.npmjs.com/package/@snowpack/plugin-webpack) */  
-    },
+export default {
+  plugins: [
+    [
+      '@snowpack/plugin-webpack',
+      {
+        /* see "Plugin Options" at https://www.npmjs.com/package/@snowpack/plugin-webpack */
+      },
+    ],
   ],
-];
-export const packageOptions = {
-  /* ... */
-};
-export const devOptions = {
-  /* ... */
-};
-export const buildOptions = {
-  /* ... */
 };

@@ -4,8 +4,7 @@
   "description": "Virtual 3D Museum",
   "main": "index.js",
   "scripts": {
-    "start": "snowpack dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "snowpack dev"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,7 @@
     "snowpack": "^3.8.2"
   },
   "dependencies": {
+    "@snowpack/plugin-webpack": "^3.0.0",
     "canvas-confetti": "^1.4.0",
     "three": "^0.130.1"
   }

@@ -21,6 +21,7 @@
     "snowpack": "^3.8.2"
   },
   "dependencies": {
+    "canvas-confetti": "^1.4.0",
     "three": "^0.130.1"
   }
 }

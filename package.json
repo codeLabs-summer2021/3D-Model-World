@@ -1,0 +1,26 @@
+{
+  "name": "codelabs-summer-2021",
+  "version": "1.0.0",
+  "description": "Virtual 3D Museum",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmarShehata/codelabs-summer-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmarShehata/codelabs-summer-2021/issues"
+  },
+  "homepage": "https://github.com/OmarShehata/codelabs-summer-2021#readme",
+  "devDependencies": {
+    "snowpack": "^3.8.2"
+  },
+  "dependencies": {
+    "three": "^0.130.1"
+  }
+}

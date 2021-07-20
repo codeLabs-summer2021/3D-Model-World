@@ -24,6 +24,7 @@
   "dependencies": {
     "@snowpack/plugin-webpack": "^3.0.0",
     "canvas-confetti": "^1.4.0",
+    "cesium": "^1.83.0",
     "three": "^0.130.1"
   }
 }

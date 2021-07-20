@@ -2,6 +2,8 @@
 
 This repository is for planning and collaborating on our CodeLabs 2021 project.
 
+Current deployed application: https://3d-virtual-museum.netlify.app/
+
 Our project is: **Create an interactive 3D virtual museum for photogrammetry & LiDAR scans**.
 
 ## Final product

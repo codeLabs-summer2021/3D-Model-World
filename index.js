@@ -10,5 +10,3 @@ const map = new mapboxgl.Map({
     pitch: 60,
     antialias: true
 });
-
-console.log('js is working');

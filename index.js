@@ -22,7 +22,7 @@ map.on('style.load', function () {
 });
 
 // RIGHT-CLICK
-let popup = new mapboxgl.Popup();
+let popup = new mapboxgl.Popup({anchor: 'left'});
 map.on('contextmenu', (e) => {
   let lngLat = { lng: e.lngLat.lng, lat: e.lngLat.lat };
 

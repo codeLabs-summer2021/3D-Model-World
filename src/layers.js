@@ -20,8 +20,10 @@ export const skyLayer = {
  * @param {Number} size Larger number creates a smaller object, smaller number creates a larger object.
  * @returns An object with all needed properties for the model layer. 
  */
-export function modelLayer(coordinates, dir, size) {
+export function modelLayer(coordinates, dir, size, name) {
   // Variable for georeferencing on the map
+  let modelName = name;
+  let modelSize = size;
   let modelOrigin = coordinates;
   let modelAltitude = 0;
   let modelRotate = [Math.PI / 2, 0, 0];
@@ -81,6 +83,37 @@ export function modelLayer(coordinates, dir, size) {
       this.renderer.autoClear = false;
     },
 
+    moveTo(coordinates){
+      modelOrigin = [coordinates.lng, coordinates.lat];
+      modelAltitude = 0;
+      modelRotate = [Math.PI / 2, 0, 0];
+      modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+        modelOrigin,
+        modelAltitude
+      );
+    
+      // Transformation variables into position, rotate and scale the 3D model onto the map
+      modelTransform = {
+        translateX: modelAsMercatorCoordinate.x,
+        translateY: modelAsMercatorCoordinate.y,
+        translateZ: modelAsMercatorCoordinate.z,
+        rotateX: modelRotate[0],
+        rotateY: modelRotate[1],
+        rotateZ: modelRotate[2],
+        // Since the 3D model is in real world meters, a scale transform needs to be...
+        // ...applied since the CustomLayerInterface expects units in MercatorCoordinates.
+        scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+      };
+    },
+
+    getSize(){
+      return modelSize;
+    },
+
+    getName(){
+      return modelName;
+    },
+
     // Render Scene
     render(gl, matrix) {
       let rotationX = new THREE.Matrix4().makeRotationAxis(
@@ -105,9 +138,9 @@ export function modelLayer(coordinates, dir, size) {
         )
         .scale(
           new THREE.Vector3(
-            modelTransform.scale / size,
-            -modelTransform.scale / size,
-            modelTransform.scale / size
+            modelTransform.scale / modelSize,
+            -modelTransform.scale / modelSize,
+            modelTransform.scale / modelSize
           )
         )
         .multiply(rotationX)

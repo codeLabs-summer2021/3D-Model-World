@@ -18,9 +18,9 @@ sketchfabIntegration.checkToken();
 function authenticateUser() {
     sketchfabIntegration.authenticate();
     // After authentication, check for token 
-    sketchfabIntegration.checkToken();
+    // sketchfabIntegration.checkToken();
     // Token hardcoced for testing purposes
-    // sketchfabIntegration.token = "INSERT TOKEN FOR TESTING";
+    sketchfabIntegration.token = "pPstovaqjLqqLFx3jRgnXl7ScdTM1V";
     // sketchfabIntegration.checkToken();
     if (sketchfabIntegration.token != null) {
         $("#linkSketchfab").show();
@@ -50,7 +50,7 @@ async function getSketchfabModelUrl() {
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token from your ion account
 
-Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZjAxYTZjYS03OWFjLTRkMjgtYTNhNi1jYjVlYTE2ZGJiOTIiLCJpZCI6NjA5NzQsInNjb3BlcyI6WyJsZ24iLCJwciIsImFjdyIsImFzbCIsImFzciIsImFzdyIsImFzcyIsImdjIiwibHIiLCJsdyIsInRyIiwidHciLCJ1c2ciXSwiaWF0IjoxNjI2NjI0Nzg4LCJleHAiOjE2MjcyMjk1ODh9.lHbxXEOXGA7Ei8kCxEQpwEd-zvkeEx53e8iqrOC7o10';
+Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYzQyM2ZhNC03ZmZiLTRlZWYtOTcxNi1lMDA2YTcyMDFlYTkiLCJpZCI6NjA5NzQsImlhdCI6MTYyNzMyMDk2OX0.Ve2Wf7pj3rAUa_9kavQcvAIZ29fXGES0IvAb6gQ9W_M';
 
 // Initialize the Cesium Viewer in the HTML element with the "cesiumContainer" ID.
 const viewer = new Cesium.Viewer('cesiumContainer', {

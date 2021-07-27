@@ -31,7 +31,6 @@ export function modelLayer(coordinates, dir, size, name) {
     modelOrigin,
     modelAltitude
   );
-
   // Transformation variables into position, rotate and scale the 3D model onto the map
   let modelTransform = {
     translateX: modelAsMercatorCoordinate.x,
@@ -83,7 +82,11 @@ export function modelLayer(coordinates, dir, size, name) {
       this.renderer.autoClear = false;
     },
 
-    moveTo(coordinates){
+    /**
+     * Allows the models to be moved to the now given location 
+     * @param {lngLat} coordinates in Object form {lng: number, lat: number} 
+     */
+    moveTo(coordinates) {
       modelOrigin = [coordinates.lng, coordinates.lat];
       modelAltitude = 0;
       modelRotate = [Math.PI / 2, 0, 0];
@@ -91,7 +94,6 @@ export function modelLayer(coordinates, dir, size, name) {
         modelOrigin,
         modelAltitude
       );
-    
       // Transformation variables into position, rotate and scale the 3D model onto the map
       modelTransform = {
         translateX: modelAsMercatorCoordinate.x,
@@ -100,17 +102,15 @@ export function modelLayer(coordinates, dir, size, name) {
         rotateX: modelRotate[0],
         rotateY: modelRotate[1],
         rotateZ: modelRotate[2],
-        // Since the 3D model is in real world meters, a scale transform needs to be...
-        // ...applied since the CustomLayerInterface expects units in MercatorCoordinates.
         scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
       };
     },
 
-    getSize(){
+    getSize() {
       return modelSize;
     },
 
-    getName(){
+    getName() {
       return modelName;
     },
 

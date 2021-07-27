@@ -39,7 +39,7 @@ map.on('contextmenu', (e) => {
     let modelButton = document.createElement('div');
     modelButton.innerHTML = `<button> ${model.getName()} </button>`;
     modelButton.addEventListener('click', (e) => {
-      moveModel(lngLat, modelArray[0])
+      moveModel(lngLat, model)
     });
     popupElement.appendChild(modelButton);
   }

@@ -10,7 +10,7 @@ modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
 modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
-const map = new mapboxgl.Map({
+export const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y',
   center: [-80.61, 28.6123],
@@ -52,7 +52,7 @@ map.on('contextmenu', (e) => {
     let modelButton = document.createElement('div');
     modelButton.innerHTML = `<button> ${model.getName()} </button>`;
     modelButton.addEventListener('click', (e) => {
-      moveModel(lngLat, model)
+      model.moveTo(lngLat);
     });
     popupElement.appendChild(modelButton);
   }
@@ -62,14 +62,3 @@ map.on('contextmenu', (e) => {
     .setDOMContent(popupElement)
     .addTo(map);
 });
-
-/**
- * Move any model Object to the given latitude and longitude.
- * 
- * @param {lngLat} lngLat in Object form {lng: number, lat: number
- * @param {Layer} model The Object that contains the pre-loaded model
- */
-function moveModel(lngLat, model) {
-  let elevation = map.queryTerrainElevation(lngLat, { exaggerated: false });
-  model.moveTo(lngLat, elevation);
-};

@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { map } from '../index.js';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -87,9 +88,9 @@ export function modelLayer(coordinates, dir, size, name) {
      * Allows the models to be moved to the now given location 
      * 
      * @param {lngLat} coordinates in Object form {lng: number, lat: number} 
-     * @param {number} elevation single number that repersents the elevation of the given lngLat
      */
-    moveTo(coordinates, elevation) {
+    moveTo(coordinates) {
+      let elevation = map.queryTerrainElevation(coordinates, { exaggerated: false });
       modelOrigin = [coordinates.lng, coordinates.lat];
       modelAltitude = elevation;
       modelRotate = [Math.PI / 2, 0, 0];

@@ -15,9 +15,10 @@ export const skyLayer = {
 /**
  * Creates the model's properties based on given parameters 
  * 
- * @param {array} coordinates Array of Longtitude and Latitude
- * @param {String} dir Name of folder with 3D model assets
- * @param {Number} size Larger number creates a smaller object, smaller number creates a larger object.
+ * @param {number[]} coordinates Array of Longtitude and Latitude
+ * @param {string} dir Name of folder with 3D model assets
+ * @param {number} size Larger number creates a smaller object, smaller number creates a larger object.
+ * @param {string} name of the model
  * @returns An object with all needed properties for the model layer. 
  */
 export function modelLayer(coordinates, dir, size, name) {
@@ -84,11 +85,13 @@ export function modelLayer(coordinates, dir, size, name) {
 
     /**
      * Allows the models to be moved to the now given location 
+     * 
      * @param {lngLat} coordinates in Object form {lng: number, lat: number} 
+     * @param {number} elevation single number that repersents the elevation of the given lngLat
      */
-    moveTo(coordinates) {
+    moveTo(coordinates, elevation) {
       modelOrigin = [coordinates.lng, coordinates.lat];
-      modelAltitude = 0;
+      modelAltitude = elevation;
       modelRotate = [Math.PI / 2, 0, 0];
       modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
         modelOrigin,
@@ -104,10 +107,6 @@ export function modelLayer(coordinates, dir, size, name) {
         rotateZ: modelRotate[2],
         scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
       };
-    },
-
-    getSize() {
-      return modelSize;
     },
 
     getName() {

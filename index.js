@@ -4,6 +4,11 @@ import { skyLayer, modelLayer } from './src/layers.js';
 
 let modelArray = [];
 
+// Add models to the modelArray
+// Will be handled by the import function 
+modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
+modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 const map = new mapboxgl.Map({
   container: 'map',
@@ -14,15 +19,11 @@ const map = new mapboxgl.Map({
   antialias: true
 });
 
-// Add models to the modelArray
-modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
-modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
-
 // Load assets on map
 map.on('style.load', function () {
   // load sky
   map.addLayer(skyLayer);
-  
+
   // load terrain
   map.addSource('mapbox-dem', {
     'type': 'raster-dem',
@@ -33,6 +34,9 @@ map.on('style.load', function () {
   map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1 });
 
   // load models 
+  for (let model of modelArray) {
+    map.addLayer(model);
+  }
 });
 
 // RIGHT-CLICK
@@ -59,6 +63,13 @@ map.on('contextmenu', (e) => {
     .addTo(map);
 });
 
+/**
+ * Move any model Object to the given latitude and longitude.
+ * 
+ * @param {lngLat} lngLat in Object form {lng: number, lat: number
+ * @param {Layer} model The Object that contains the pre-loaded model
+ */
 function moveModel(lngLat, model) {
-  model.moveTo(lngLat);
+  let elevation = map.queryTerrainElevation(lngLat, { exaggerated: false });
+  model.moveTo(lngLat, elevation);
 };

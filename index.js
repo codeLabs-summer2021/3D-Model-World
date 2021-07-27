@@ -20,10 +20,19 @@ modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
 
 // Load assets on map
 map.on('style.load', function () {
-  for (let model of modelArray) {
-    map.addLayer(model);
-  }
+  // load sky
   map.addLayer(skyLayer);
+  
+  // load terrain
+  map.addSource('mapbox-dem', {
+    'type': 'raster-dem',
+    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+    'tileSize': 512,
+    'maxzoom': 14
+  });
+  map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1 });
+
+  // load models 
 });
 
 // RIGHT-CLICK

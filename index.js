@@ -1,51 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { skyLayer, modelLayer } from './src/layers.js';
-import SketchfabIntegration from "./SketchfabIntegration.js";
-
-$("#authenticate").on("click", authenticateUser);
-$("#submitLink").on("click", getSketchfabModelUrl);
-$("#linkSketchfab").hide();
-$("#submitLink").hide();
-
-let modelgltfURL;
-
-const sketchfabIntegration = new SketchfabIntegration();
-sketchfabIntegration.checkToken();
-
-function authenticateUser() {
-  sketchfabIntegration.authenticate();
-  // After authentication, check for token 
-  sketchfabIntegration.checkToken();
-  // Token hardcoced for testing purposes
-  // sketchfabIntegration.token = "pPstovaqjLqqLFx3jRgnXl7ScdTM1V";
-  // sketchfabIntegration.checkToken();
-  if (sketchfabIntegration.token != null) {
-    $("#linkSketchfab").show();
-    $("#submitLink").show();
-  }
-  // console.log("Authenticating");
-}
-
-async function getSketchfabModelUrl() {
-  let modelURL = $("#linkSketchfab").val();
-  console.log(modelURL);
-  // Contains blob url
-  // Fetch model will load model from sketchfab link
-  modelgltfURL = await sketchfabIntegration.fetchModel(modelURL);
-  // readzip only have link to glb file inside zip folder
-  // modelgltfURL = await sketchfabIntegration.readZip("/static/Assets/electricalBox.glb.zip");
-  // console.log(modelgltfURL);
-  // create model will create the model in cesium and display it 
-  console.log(modelgltfURL);
-  console.log("creating model");
-  // Create Model Function - "HERE"
-  // {
-  // This code will load models if stored in a static folder as glbs which has the requirements for Cesium to load files
-  // createModel("/static/Assets/electricalBox.glb");
-  // }
-}
-
+import menu from './src/menu';
 
 let modelArray = [];
 
@@ -54,6 +10,10 @@ let modelArray = [];
 modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
 modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
 
+// Start menu
+menu();
+
+// Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
   container: 'map',
@@ -84,7 +44,8 @@ map.on('style.load', function () {
   }
 });
 
-// RIGHT-CLICK
+// MAP FUNCTIONALITY
+// Right-Click (Move Model)
 let popup = new mapboxgl.Popup({ anchor: 'left' });
 map.on('contextmenu', (e) => {
   let lngLat = { lng: e.lngLat.lng, lat: e.lngLat.lat };

@@ -7,10 +7,16 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 75%;
+
+    width: 100%;
 }
 
-#UI {
-    width: 25%;
-    float: right;
+#sketchfab {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: 2px solid black;
+    background-color: #fff;
+    padding: 5px;
+    display: block;
 }

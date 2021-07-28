@@ -9,3 +9,13 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+#sketchfab {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: 2px solid black;
+    background-color: #fff;
+    padding: 5px;
+    display: block;
+}

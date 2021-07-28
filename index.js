@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { skyLayer, modelLayer } from './src/layers.js';
+import menu from './src/menu';
 
 let modelArray = [];
 
@@ -9,6 +10,10 @@ let modelArray = [];
 modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
 modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
 
+// Start menu
+menu();
+
+// Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
   container: 'map',
@@ -39,7 +44,8 @@ map.on('style.load', function () {
   }
 });
 
-// RIGHT-CLICK
+// MAP FUNCTIONALITY
+// Right-Click (Move Model)
 let popup = new mapboxgl.Popup({ anchor: 'left' });
 map.on('contextmenu', (e) => {
   let lngLat = { lng: e.lngLat.lng, lat: e.lngLat.lat };

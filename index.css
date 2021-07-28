@@ -7,5 +7,10 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100%;
+    width: 75%;
+}
+
+#UI {
+    width: 25%;
+    float: right;
 }

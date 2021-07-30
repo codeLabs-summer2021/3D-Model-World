@@ -1,6 +1,8 @@
-const CLIENT_ID = null;
+const CLIENT_ID = 'qzsZjdRBnwZhC51TYPgsLcfrl2RpeoZKVBpexr8J';
 const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 import JSZip from "jszip";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 function checkStatus(response) {
     // From: https://gist.github.com/irbull/42f3bd7a9db767ce72a770ded9a5bdd1
@@ -51,7 +53,28 @@ class SketchfabIntegration {
             }
         }
         const fileUrl = blobUrls[entryFile.name];
-        return fileUrl;
+
+        const loadingManager = new THREE.LoadingManager();
+        loadingManager.setURLModifier((url) => {
+            const parsedUrl = new URL(url);
+            const origin = parsedUrl.origin;
+            const path = parsedUrl.pathname;
+            const relativeUrl = path.replace(origin + '/', "");
+
+            if (blobUrls[relativeUrl] != undefined) {
+                return blobUrls[relativeUrl];
+            }
+
+            return url
+        });
+        let scene = new THREE.Scene();
+        const gltfLoader = new GLTFLoader(loadingManager);
+        gltfLoader.load(fileUrl, (gltf) => {
+            scene.add(gltf.scene);
+        });
+
+        // console.log(scene);
+        return scene;
     }
 
     checkToken() {
@@ -100,23 +123,25 @@ class SketchfabIntegration {
             // Update modal with error
             console.error("Failed to download model from Sketchfab", e);
         }
-
+        // console.log(modelZipUrl);
         if (modelZipUrl == undefined) return;
 
         // Update modal with "Loading model"
         // document.querySelector('#fetch-success').style.display = 'block';
         console.log("success!!");
-        let finalURL;
+        let finalScene;
         try {
-            finalURL = await this.readZip(modelZipUrl);
+            finalScene = await this.readZip(modelZipUrl);
+            // console.log(finalScene, "1")
         } catch (e) {
             // Update modal with error 
             console.error("Failed to read model from Sketchfab", e);
             return;
         }
 
-        // Returns read zipped url
-        return finalURL;
+        // Returns scene with added model
+        // console.log(finalScene, "2");
+        return finalScene;
     }
 }
 

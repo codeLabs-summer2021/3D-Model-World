@@ -7,8 +7,8 @@ let modelArray = [];
 
 // Add models to the modelArray
 // Will be handled by the import function 
-modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
-modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
+// modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
+modelArray[0] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
 
 // Start menu
 menu();
@@ -68,3 +68,5 @@ map.on('contextmenu', (e) => {
     .setDOMContent(popupElement)
     .addTo(map);
 });
+
+export default map;

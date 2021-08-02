@@ -1,17 +1,17 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { skyLayer, modelLayer } from './src/layers.js';
-import menu from './src/menu';
+import {
+  skyLayer,
+  modelLayer,
+  buildingLayer
+} from './src/layers.js';
+import { menuClick } from './src/menu';
 
 let modelArray = [];
-
 // Add models to the modelArray
 // Will be handled by the import function 
 modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
 modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
-
-// Start menu
-menu();
 
 // Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
@@ -26,10 +26,22 @@ export const map = new mapboxgl.Map({
 
 // Load assets on map
 map.on('style.load', function () {
+
+  // UI ELEMENTS
+  // Full Screen option
+  map.addControl(new mapboxgl.FullscreenControl({ container: document.querySelector('body') }));
+  // Navigation Control
+  var nav = new mapboxgl.NavigationControl();
+  map.addControl(nav, 'top-left');
+  // Start menu
+  $("#menuBtn").on("click", menuClick);
+  // Toggle Buildings Button
+  $("#buildingBtn").on("click", toggelBuildings);
+
+  // LAYERS 
   // load sky
   map.addLayer(skyLayer);
-
-  // load terrain
+  // Load terrain
   map.addSource('mapbox-dem', {
     'type': 'raster-dem',
     'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -37,8 +49,7 @@ map.on('style.load', function () {
     'maxzoom': 14
   });
   map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1 });
-
-  // load models 
+  // Load models 
   for (let model of modelArray) {
     map.addLayer(model);
   }
@@ -68,3 +79,16 @@ map.on('contextmenu', (e) => {
     .setDOMContent(popupElement)
     .addTo(map);
 });
+
+// Allowing the user to togglge the buildings
+function toggelBuildings() {
+  let btnColor = document.getElementById('buildingBtn');
+  // let mapLayer = map.getLayer('route');
+  if (!map.getLayer(buildingLayer.id)) {
+    btnColor.style.backgroundColor = "#808080";
+    map.addLayer(buildingLayer);
+  } else {
+    btnColor.style.backgroundColor = "#FFFFFF";
+    map.removeLayer(buildingLayer.id);
+  }
+};

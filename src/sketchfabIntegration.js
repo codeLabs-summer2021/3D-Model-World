@@ -28,9 +28,7 @@ class SketchfabIntegration {
     }
 
     authenticate() {
-        // window.close();
-        window.open(AUTHENTICATION_URL);
-
+        window.open(AUTHENTICATION_URL, "_self");
     }
 
     async readZip(zipUrl) {

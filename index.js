@@ -3,13 +3,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { skyLayer, modelLayer } from './src/layers.js';
 import menu from './src/menu';
 
-let modelArray = [];
-
-// Add models to the modelArray
-// Will be handled by the import function 
-// modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
-modelArray[0] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
-
 // Start menu
 menu();
 
@@ -37,11 +30,6 @@ map.on('style.load', function () {
     'maxzoom': 14
   });
   map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1 });
-
-  // load models 
-  for (let model of modelArray) {
-    map.addLayer(model);
-  }
 });
 
 // MAP FUNCTIONALITY
@@ -68,5 +56,12 @@ map.on('contextmenu', (e) => {
     .setDOMContent(popupElement)
     .addTo(map);
 });
+
+// Adding new model to the map
+let modelArray = [];
+export function addModel(model) {
+  map.addLayer(model);
+  modelArray.push(model);
+};
 
 export default map;

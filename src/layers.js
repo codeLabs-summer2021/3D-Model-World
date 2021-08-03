@@ -1,7 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import { map } from '../index.js';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export const skyLayer = {
   id: 'sky',
@@ -17,12 +16,12 @@ export const skyLayer = {
  * Creates the model's properties based on given parameters 
  * 
  * @param {number[]} coordinates Array of Longtitude and Latitude
- * @param {string} dir Name of folder with 3D model assets
+ * @param {Scene} scene single scene that contains a model
  * @param {number} size Larger number creates a smaller object, smaller number creates a larger object.
  * @param {string} name of the model
  * @returns An object with all needed properties for the model layer. 
  */
-export function modelLayer(coordinates, dir, size, name) {
+export function modelLayer(scene, coordinates, size, name) {
   // Variable for georeferencing on the map
   let modelName = name;
   let modelSize = size;
@@ -48,21 +47,12 @@ export function modelLayer(coordinates, dir, size, name) {
 
   // Configuration of the custom layer for a 3D model per the CustomLayerInterface
   return {
-    id: dir,
+    id: scene.uuid,
     type: 'custom',
     renderingMode: '3d',
     onAdd(map, gl) {
-      // Scene
-      this.scene = new THREE.Scene();
-
-      // Object
-      let loader = new GLTFLoader();
-      loader.load(
-        `res/${dir}/scene.gltf`,
-        function (gltf) {
-          this.scene.add(gltf.scene);
-        }.bind(this)
-      );
+      // Scene and Object
+      this.scene = scene;
 
       // Light(s)
       const ambientLight = new THREE.AmbientLight(0x404040, 2.5)

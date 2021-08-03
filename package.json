@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build"
+    "start": "snowpack dev --polyfill-node",
+    "build": "snowpack build --polyfill-node"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "snowpack": "^3.8.2"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^4.7.2",
     "@snowpack/plugin-webpack": "^3.0.0",
     "jszip": "^3.7.0",
     "mapbox-gl": "^2.3.1",

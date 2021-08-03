@@ -7,16 +7,31 @@
     <meta name="description" content="Virtual 3D Museum" />
     <title>Virtual 3D Museum</title>
     <link rel="stylesheet" href="index.css">
+
 </head>
 
 <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="map">Map not loaded</div>
-    <div id="sketchfab">
-        <button id="authenticate">Login to Sketchfab</button>
-        <div>
-            <input id="linkSketchfab" />
-            <button id="submitLink">Submit link</button>
-        </div>
+
+    <button id="menuBtn"><i class="fa fa-bars"></i></button>
+    <div id="dropdown" class="dropdown-content">
+        <a id='sketchfab'>
+            <p>------ LOGIN ------</p>
+            <button id="authenticate">Login to Sketchfab</button>
+        </a>
+        <a id="loadModel">
+            <p>---- ADD MODEL ----</p>
+            <div id="link">Link:<input id="modelUrl" /></div>
+            <div id="name">Name:<input id="modelName" /></div>
+            <div id="size">Size: <input id="modelSize" /></div>
+            <div id="location">Location: <input id="modelLocation" /></div>
+            <button id="addModel">Add</button>
+        </a>
+        <a id="modelList">
+            <p>--- MODEL LIST ---</p>
+            <div>model list..</div>
+        </a>
     </div>
 
     <div id="overlay">
@@ -37,6 +52,7 @@
         </center>
     </div>
 
+    <button id="buildingBtn"><i class="fa fa-home"></i></button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="/index.js"></script>
 </body>

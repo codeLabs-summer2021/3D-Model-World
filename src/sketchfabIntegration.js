@@ -1,4 +1,4 @@
-import CLIENT_ID from '../secrets.js';
+import CLIENT_ID from '';
 const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 import JSZip from 'jszip';
 import * as THREE from 'three';

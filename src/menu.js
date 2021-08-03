@@ -1,7 +1,6 @@
 import SketchfabIntegration from "./sketchfabIntegration.js";
 import { modelLayer } from './layers.js';
 import { addModel } from '../index.js';
-import $ from "jquery";
 
 export function menuClick() {
     $("#modelList").hide();
@@ -12,6 +11,7 @@ export function menuClick() {
     loggedIn();
 }
 
+let modelScene;
 const sketchfabIntegration = new SketchfabIntegration();
 
 function loggedIn() {
@@ -42,6 +42,6 @@ async function getSketchfabModelUrl() {
     let modelURL = $("#modelUrl").val();
     $("#modelUrl").val('');
     // Fetch model will load model from sketchfab link
-    let modelScene = await sketchfabIntegration.fetchModel(modelURL);
+    modelScene = await sketchfabIntegration.fetchModel(modelURL);
     addModel(modelLayer(modelScene, [-80.61, 28.6123], 1, 'test'));
 }

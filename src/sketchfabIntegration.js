@@ -3,7 +3,6 @@ const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456
 import JSZip from 'jszip';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import $ from "jquery";
 
 function checkStatus(response) {
     // From: https://gist.github.com/irbull/42f3bd7a9db767ce72a770ded9a5bdd1
@@ -78,6 +77,7 @@ class SketchfabIntegration {
         for (let param of hashParams) {
             if (param.indexOf('access_token') !== -1) {
                 const token = param.replace('#access_token=', '');
+                console.log('Detected Sketchfab token: ', token);
                 localStorage.setItem('sb_token', token);
             }
         }

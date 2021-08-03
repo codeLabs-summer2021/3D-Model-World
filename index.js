@@ -9,12 +9,6 @@ import {
 } from './src/layers.js';
 import { menuClick } from './src/menu';
 
-let modelArray = [];
-// Add models to the modelArray
-// Will be handled by the import function 
-modelArray[0] = modelLayer([-80.6208, 28.6273], 'saturnV', 1, 'Saturn V');
-modelArray[1] = modelLayer([-80.60405, 28.6084], 'falcon9', 100, 'Falcon 9');
-
 // Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
@@ -57,10 +51,6 @@ map.on('style.load', function () {
     'maxzoom': 14
   });
   map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1 });
-  // Load models 
-  for (let model of modelArray) {
-    map.addLayer(model);
-  }
 });
 
 // MAP FUNCTIONALITY
@@ -88,6 +78,13 @@ map.on('contextmenu', (e) => {
     .addTo(map);
 });
 
+// Adding new model to the map
+let modelArray = [];
+export function addModel(model) {
+  map.addLayer(model);
+  modelArray.push(model);
+};
+
 // Allowing the user to togglge the buildings
 function toggelBuildings() {
   let btnColor = document.getElementById('buildingBtn');
@@ -100,3 +97,5 @@ function toggelBuildings() {
     map.removeLayer(buildingLayer.id);
   }
 };
+
+export default map;

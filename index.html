@@ -34,6 +34,24 @@
         </a>
     </div>
 
+    <div id="overlay">
+        <h3>
+            Getting model from Sketchfab...
+        </h3>
+        <h3 id="fetch-success">
+            Successfully fetched model! Loading into the map now...
+        </h3>
+        <h3 class="error" id="download-error">
+            Failed to download this model. Make sure you have access to download this model on Sketchfab.
+        </h3>
+        <h3 class="error" id="unknown-error">
+            Failed to load this model, unknown error. Check the browser console for more details.
+        </h3>
+        <center>
+            <button id="dimiss-btn">Dismiss</button>
+        </center>
+    </div>
+
     <button id="buildingBtn"><i class="fa fa-home"></i></button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="/index.js"></script>

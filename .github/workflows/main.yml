@@ -27,6 +27,7 @@ jobs:
       - name: Build the site
         run: |
           cd ../.. && echo -e "const CLIENT_ID = '${{ secrets.CLIENT_ID }}';/n/nexport default CLIENT_ID;" > secrets.js
+          cd ../..
           npm install
           npm run build
       - name: Netlify Actions

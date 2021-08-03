@@ -26,6 +26,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build the site
         run: |
+          cd ../.. && echo -e "const CLIENT_ID = '${{ secrets.CLIENT_ID }}';/n/nexport default CLIENT_ID;" > secrets.js
           npm install
           npm run build
       - name: Netlify Actions

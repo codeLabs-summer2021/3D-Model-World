@@ -1,4 +1,4 @@
-const CLIENT_ID = '';
+import CLIENT_ID from '../secrets.js';
 const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 import JSZip from 'jszip';
 import * as THREE from 'three';
@@ -77,7 +77,7 @@ class SketchfabIntegration {
         for (let param of hashParams) {
             if (param.indexOf('access_token') !== -1) {
                 const token = param.replace('#access_token=', '');
-                console.log('Detected Sketchfab token: ', token);
+                // console.log('Detected Sketchfab token: ', token);
                 localStorage.setItem('sb_token', token);
             }
         }

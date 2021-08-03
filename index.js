@@ -45,12 +45,6 @@ map.on('style.load', function () {
     mapboxgl: mapboxgl
   });
   map.addControl(geocoder, 'top-left');
-  // map.addControl(
-  //   new MapboxGeocoder({
-  //     accessToken: mapboxgl.accessToken,
-  //     mapboxgl: mapboxgl
-  //   }, 'top-right')
-  // );
 
   // LAYERS 
   // load sky

@@ -8,7 +8,6 @@ import {
   buildingLayer
 } from './src/layers.js';
 import { menuClick } from './src/menu';
-import $ from "jquery";
 
 // Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';

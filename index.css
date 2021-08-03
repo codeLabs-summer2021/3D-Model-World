@@ -51,8 +51,8 @@ body {
 
 #buildingBtn {
     position: absolute;
-    top: 102px;
-    left: 10px;
+    bottom: 122px;
+    right: 10px;
     background-color: white;
     border: none;
     color: black;

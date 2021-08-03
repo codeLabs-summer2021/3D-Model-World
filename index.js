@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import {
   skyLayer,
   modelLayer,
@@ -32,11 +34,23 @@ map.on('style.load', function () {
   map.addControl(new mapboxgl.FullscreenControl({ container: document.querySelector('body') }));
   // Navigation Control
   var nav = new mapboxgl.NavigationControl();
-  map.addControl(nav, 'top-left');
+  map.addControl(nav, 'bottom-right');
   // Start menu
   $("#menuBtn").on("click", menuClick);
   // Toggle Buildings Button
   $("#buildingBtn").on("click", toggelBuildings);
+  // Geocoder Searchbar
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  });
+  map.addControl(geocoder, 'top-left');
+  // map.addControl(
+  //   new MapboxGeocoder({
+  //     accessToken: mapboxgl.accessToken,
+  //     mapboxgl: mapboxgl
+  //   }, 'top-right')
+  // );
 
   // LAYERS 
   // load sky

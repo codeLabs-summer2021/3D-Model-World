@@ -4,7 +4,6 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import {
   skyLayer,
-  modelLayer,
   buildingLayer
 } from './src/layers.js';
 import { menuClick } from './src/menu';

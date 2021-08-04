@@ -1,4 +1,4 @@
-const CLIENT_ID = '';
+const CLIENT_ID = 'qzsZjdRBnwZhC51TYPgsLcfrl2RpeoZKVBpexr8J';
 const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 import JSZip from 'jszip';
 import * as THREE from 'three';
@@ -43,7 +43,6 @@ class SketchfabIntegration {
         const blobUrls = {};
         for (const file of files) {
             if (typeof file !== 'undefined') {
-                console.log(`Loading ${file.name}...`);
                 blobUrls[file.name] = await getFileUrl(file);
             }
         }

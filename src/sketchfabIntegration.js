@@ -1,8 +1,9 @@
-const CLIENT_ID = '';
-const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 import JSZip from 'jszip';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+const CLIENT_ID = 'qzsZjdRBnwZhC51TYPgsLcfrl2RpeoZKVBpexr8J';
+const AUTHENTICATION_URL = `https://sketchfab.com/oauth2/authorize/?state=123456789&response_type=token&client_id=${CLIENT_ID}`;
 
 function checkStatus(response) {
     // From: https://gist.github.com/irbull/42f3bd7a9db767ce72a770ded9a5bdd1

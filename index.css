@@ -23,6 +23,10 @@ body {
     cursor: pointer;
 }
 
+#list {
+    display: inline-block;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -40,7 +44,7 @@ body {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;  
+    display: block;
     border: 1px solid black;
     margin: 2px;
 }
@@ -54,7 +58,7 @@ body {
     height: 100%;
     background: #000000b3;
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
     z-index: 1;
     color: white;

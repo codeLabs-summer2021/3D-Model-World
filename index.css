@@ -85,3 +85,7 @@ body {
     font-size: 14px;
     cursor: pointer;
 }
+
+.coordinates {
+    width: 75%;
+}

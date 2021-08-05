@@ -21,7 +21,6 @@ export const map = new mapboxgl.Map({
 
 // Load assets on map
 map.on('style.load', function () {
-
   // UI ELEMENTS
   // Full Screen option
   map.addControl(new mapboxgl.FullscreenControl({ container: document.querySelector('body') }));
@@ -75,6 +74,11 @@ map.on('contextmenu', (e) => {
     .setLngLat(lngLat)
     .setDOMContent(popupElement)
     .addTo(map);
+});
+
+map.on('click', function (e) {
+  $("#modelLat").val(e.lngLat.lat);
+  $("#modelLong").val(e.lngLat.lng);
 });
 
 // Adding new model to the map

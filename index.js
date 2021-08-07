@@ -7,6 +7,7 @@ import {
   buildingLayer
 } from './src/layers.js';
 import { menuClick } from './src/menu';
+import { loadModelList } from './src/menu.js';
 
 // Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
@@ -53,6 +54,25 @@ map.on('style.load', function () {
 });
 
 // MAP FUNCTIONALITY
+// Adding new model to the map
+let modelArray = [];
+export function addModel(model) {
+  map.addLayer(model);
+  modelArray.push(model);
+  loadModelList(modelArray);
+};
+
+// Remove a model from the map
+export function removeModel(model) {
+  map.removeLayer(model.id);
+  for (let i in modelArray) {
+    if(modelArray[i].id === model.id){
+      modelArray.splice(i,1);
+    }
+  };
+  loadModelList(modelArray);
+}
+
 // Right-Click (Move Model)
 let popup = new mapboxgl.Popup({ anchor: 'left' });
 map.on('contextmenu', (e) => {
@@ -60,7 +80,11 @@ map.on('contextmenu', (e) => {
 
   // Popup Properties
   const popupElement = document.createElement('div');
-  popupElement.innerHTML = `Pick a Model to move...`;
+  if(modelArray.length > 0){
+    popupElement.innerHTML = `Pick a Model to move...`;
+  } else {
+    popupElement.innerHTML = `Add models to map...`;
+  }
 
   for (let model of modelArray) {
     let modelButton = document.createElement('div');
@@ -70,6 +94,7 @@ map.on('contextmenu', (e) => {
     });
     popupElement.appendChild(modelButton);
   }
+
   // Initiate the Popup
   popup
     .setLngLat(lngLat)
@@ -77,14 +102,7 @@ map.on('contextmenu', (e) => {
     .addTo(map);
 });
 
-// Adding new model to the map
-let modelArray = [];
-export function addModel(model) {
-  map.addLayer(model);
-  modelArray.push(model);
-};
-
-// Allowing the user to togglge the buildings
+// Allowing the user to toggle the buildings
 function toggelBuildings() {
   let btnColor = document.getElementById('buildingBtn');
   // let mapLayer = map.getLayer('route');
@@ -96,5 +114,3 @@ function toggelBuildings() {
     map.removeLayer(buildingLayer.id);
   }
 };
-
-export default map;

@@ -118,6 +118,10 @@ export function modelLayer(scene, coordinates, size, name) {
       return modelName;
     },
 
+    getLngLat(){
+      return modelOrigin;
+    },
+
     // Render Scene
     render(gl, matrix) {
       let rotationX = new THREE.Matrix4().makeRotationAxis(

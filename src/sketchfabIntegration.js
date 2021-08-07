@@ -113,7 +113,6 @@ class SketchfabIntegration {
         let modelZipUrl;
         try {
             modelZipUrl = await this.getModelDownloadUrl(url);
-            // console.log(modelZipUrl);
         } catch (e) {
             // Update modal with error
             console.error('Failed to download model from Sketchfab', e);

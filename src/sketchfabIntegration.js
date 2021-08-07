@@ -76,7 +76,6 @@ class SketchfabIntegration {
         for (let param of hashParams) {
             if (param.indexOf('access_token') !== -1) {
                 const token = param.replace('#access_token=', '');
-                console.log('Detected Sketchfab token: ', token);
                 localStorage.setItem('sb_token', token);
             }
         }

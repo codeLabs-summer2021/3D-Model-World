@@ -126,7 +126,7 @@ export function loadModelList(modelArray) {
             // TODO: Make this a smooth animation
             map.setCenter(model.getLngLat());
             // TODO: Zoom scale dependent on size of model
-            map.setZoom(20);
+            map.setZoom(15);
         });
         deleteBtn.textContent = 'Delete';
         deleteBtn.addEventListener('click', (e) => {

@@ -118,6 +118,7 @@ class SketchfabIntegration {
             console.error('Failed to download model from Sketchfab', e);
             $('#download-error').css('display', 'block');
             $('#dimiss-btn').css('display', 'block');
+            return;
         }
 
         if (modelZipUrl == undefined) return;

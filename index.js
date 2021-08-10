@@ -22,7 +22,6 @@ export const map = new mapboxgl.Map({
 
 // Load assets on map
 map.on('style.load', function () {
-
   // UI ELEMENTS
   // Full Screen option
   map.addControl(new mapboxgl.FullscreenControl({ container: document.querySelector('body') }));
@@ -66,8 +65,8 @@ export function addModel(model) {
 export function removeModel(model) {
   map.removeLayer(model.id);
   for (let i in modelArray) {
-    if(modelArray[i].id === model.id){
-      modelArray.splice(i,1);
+    if (modelArray[i].id === model.id) {
+      modelArray.splice(i, 1);
     }
   };
   loadModelList(modelArray);
@@ -80,7 +79,7 @@ map.on('contextmenu', (e) => {
 
   // Popup Properties
   const popupElement = document.createElement('div');
-  if(modelArray.length > 0){
+  if (modelArray.length > 0) {
     popupElement.innerHTML = `Pick a Model to move...`;
   } else {
     popupElement.innerHTML = `Add models to map...`;
@@ -102,7 +101,12 @@ map.on('contextmenu', (e) => {
     .addTo(map);
 });
 
-// Allowing the user to toggle the buildings
+map.on('click', function (e) {
+  $("#modelLat").val(e.lngLat.lat);
+  $("#modelLong").val(e.lngLat.lng);
+});
+
+// Allowing the user to togglge the buildings
 function toggelBuildings() {
   let btnColor = document.getElementById('buildingBtn');
   // let mapLayer = map.getLayer('route');

@@ -1,8 +1,10 @@
-# Codelabs Summer 2021
+# 3D Model World
 
 This repository is for planning and collaborating on our CodeLabs 2021 project.
 
 Current deployed application: https://3d-virtual-museum.netlify.app/
+
+[Demo](https://docs.google.com/presentation/d/1V7V68f1WG8VkI5-QYYdxSG6oYOm2buF1UngpHPdeOlM/edit#slide=id.ge80e62fb11_1_2422)
 
 Our project is: **Create an interactive 3D virtual museum for photogrammetry & LiDAR scans**.
 

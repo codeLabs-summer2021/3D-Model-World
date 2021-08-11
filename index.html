@@ -24,11 +24,13 @@
             <p>---- ADD MODEL ----</p>
             <div id="link">Link:<input id="modelUrl" type="url" /></div>
             <div id="name">Name:<input id="modelName" type="text" /></div>
-            <div id="size">Size: <input id="modelSize" type="number" min=".001" max="10" value="1" step=".1" /></div>
+            <div id="size">Size: <input id="modelSize" type="number" min="0" max="10" value="1" step=".1" /></div>
             <div id="location">
-                Latitude: <input class="coordinates" id="modelLat" type="number" min="-90" max="90" />
+                Latitude: <input class="coordinates" id="modelLat" type="number" min="-90" max="90"
+                    step=".0000000000001" />
                 <br>
-                Longitude: <input class="coordinates" id="modelLong" type="number" min="-180" max="180" />
+                Longitude: <input class="coordinates" id="modelLong" type="number" min="-180" max="180"
+                    step=".0000000000001" />
             </div>
             <p id="missingInfo"></p>
             <button id="addModel">Add</button>

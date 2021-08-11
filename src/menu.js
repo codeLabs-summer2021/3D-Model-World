@@ -67,7 +67,13 @@ async function getModelInfo() {
         $("#missingInfo").css("color", "red");
         return;
     }
-    let size = parseFloat($("#modelSize").val());
+    let size = $("#modelSize").val();
+    if (size === '') {
+        $("#missingInfo").html("Please enter a size!");
+        $("#missingInfo").css("color", "red");
+        return;
+    }
+    size = parseFloat(size);
     if (size <= 0) {
         $("#missingInfo").html("Please enter a size!");
         $("#missingInfo").css("color", "red");

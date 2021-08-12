@@ -49,10 +49,6 @@ body {
     margin: 2px;
 }
 
-.show {
-    display: block;
-}
-
 #overlay {
     width: 100%;
     height: 100%;
@@ -92,4 +88,19 @@ body {
 
 .coordinates {
     width: 75%;
+}
+
+.editPopup-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding: 6px;
+}
+
+.show {
+    display: block;
 }

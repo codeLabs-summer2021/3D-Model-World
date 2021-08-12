@@ -41,7 +41,8 @@ export function modelLayer(scene, coordinates, size, name) {
   let modelSize = size;
   let modelOrigin = coordinates;
   let modelAltitude = 0;
-  let modelRotate = [Math.PI / 2, 0, 0];
+  let modelRotaion = 2;
+  let modelRotate = [Math.PI / modelRotaion, 0, 0];
   let modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
     modelOrigin,
     modelAltitude
@@ -118,8 +119,28 @@ export function modelLayer(scene, coordinates, size, name) {
       return modelName;
     },
 
+    getSize(){
+      return modelSize;
+    },
+
+    getRotation(){
+      return modelRotaion;
+    },
+
     getLngLat(){
       return modelOrigin;
+    },
+
+    setName(name){
+      modelName = name;
+    },
+
+    setSize(size){
+      modelSize = size;
+    },
+
+    setRotation(rotation){
+      modelRotaion = rotation;
     },
 
     // Render Scene

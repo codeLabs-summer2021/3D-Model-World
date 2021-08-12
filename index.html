@@ -12,9 +12,10 @@
 
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div id="map">Map not loaded</div>
+    <div id="map">Map loading...</div>
 
     <button id="menuBtn"><i class="fa fa-bars"></i></button>
+
     <div id="dropdown" class="dropdown-content">
         <a id='sketchfab'>
             <p>------ LOGIN ------</p>
@@ -24,11 +25,13 @@
             <p>---- ADD MODEL ----</p>
             <div id="link">Link:<input id="modelUrl" type="url" /></div>
             <div id="name">Name:<input id="modelName" type="text" /></div>
-            <div id="size">Size:<input id="modelSize" type="number" min="0" max="100" value="1" step=".1" /></div>
-            <div id="lat">Latitude:<input class="coordinates" id="modelLat" type="number" min="-90" max="90"
-                    step=".0000000000001" /></div>
-            <div id='lng'>Longitude:<input class="coordinates" id="modelLong" type="number" min="-180" max="180"
-                    step=".0000000000001" /></div>
+            <div id="size">Size:<input id="modelSize" type="number" min="0.01" max="100" value="1" step=".1" /></div>
+            <div id="lat">Latitude:
+                <input class="coordinates" id="modelLat" type="number" min="-90" max="90" step=".00001" />
+            </div>
+            <div id='lng'>Longitude:
+                <input class="coordinates" id="modelLong" type="number" min="-180" max="180" step=".00001" />
+            </div>
             <p id="missingInfo"></p>
             <button id="addModel">Add</button>
         </a>
@@ -38,6 +41,24 @@
                 <div></div>
             </div>
         </a>
+    </div>
+
+    <div id="editPopup" class="editPopup-content">
+        <h2 id="editCurrentName"></h2>
+        <div id="newName">New Name:
+            <input id="editName" type="text" />
+            <button id="editNameBtn">Update</button>
+        </div>
+        <div id="newSize">New Size:
+            <input id="editSize" type="number" min="0.01" max="100" value="1" step=".1" />
+            <button id="editSizeBtn">Update</button>
+        </div>
+        <div id="newRotation">New Rotation:
+            <input id="editRotation" type="number" min="0" max="360" value="1"/>
+            <button id="editRotationBtn">Update</button>
+        </div>
+        <button id="editCloseBtn">Close</button>
+        <p id="editInfoText"></p>
     </div>
 
     <div id="overlay">

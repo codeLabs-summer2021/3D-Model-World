@@ -126,6 +126,7 @@ export function loadModelList(modelArray) {
         let modelName = document.createElement('b');
         let moveBtn = document.createElement('button');
         let deleteBtn = document.createElement('button');
+        let editBtn = document.createElement('button');
         modelName.textContent = `${model.getName()}: `;
         moveBtn.textContent = 'Find'
         moveBtn.addEventListener('click', (e) => {
@@ -138,9 +139,55 @@ export function loadModelList(modelArray) {
         deleteBtn.addEventListener('click', (e) => {
             removeModel(model);
         });
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', (e) => {
+            editModel(model);
+        });
         modelDiv.appendChild(modelName);
         modelDiv.appendChild(moveBtn);
         modelDiv.appendChild(deleteBtn);
+        modelDiv.appendChild(editBtn);
         modelList.appendChild(modelDiv);
     }
+}
+
+function editModel(model) {
+    document.getElementById("editPopup").classList.toggle("show");
+    $("#editCurrentName").html(`Editing: ${model.getName()}`);
+    $("#editName").val(model.getName());
+    $("#editSize").val(model.getSize());
+    $("#editRotation").val(model.getRotation());
+
+    // Change Name
+    $("#editNameBtn").on("click", function () {
+        if ($("#editName").val() === '') {
+            $("#editInfoText").html("New Name cannot be blank");
+        } else {
+            model.setName($("#editName").val());
+            $("#editCurrentName").html(`Editing: ${$("#editName").val()}`);
+            $("#editInfoText").html("Name Changed");
+        }
+    });
+    // Change Size
+    $("#editSizeBtn").on("click", function () {
+        if ($("#editSize").val() === '') {
+            $("#editInfoText").html("New Size cannot be blank");
+        } else {
+            model.setSize($("#editSize").val());
+            $("#editInfoText").html("Size Changed");
+        }
+    });
+    // Change Rotation
+    $("#editRotationBtn").on("click", function () {
+        if ($("#editRotation").val() === '') {
+            $("#editInfoText").html("New Rotation cannot be blank");
+        } else {
+            model.setRotation($("#editRotation").val());
+            $("#editInfoText").html("Rotation Changed");
+        }
+    });
+    // Close button
+    $("#editCloseBtn").on("click", function () {
+        editModel(model);
+    });
 }

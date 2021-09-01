@@ -10,17 +10,17 @@ import {
     addModelToLocalStorage,
     removeModelToLocalStorage
 } from './localStorage.js';
+const sketchfabIntegration = new SketchfabIntegration();
 
 export function menuClick() {
     $("#modelList").hide();
     $("#loadModel").hide();
     document.getElementById("dropdown").classList.toggle("show");
     $("#authenticate").on("click", authenticateUser);
-    $("#addModel").on("click", getSketchfabModelUrl);
+    $("#addModel").on("click", getSketchfabModel);
     loggedIn();
 };
 
-const sketchfabIntegration = new SketchfabIntegration();
 
 function loggedIn() {
     sketchfabIntegration.checkToken();
@@ -45,7 +45,7 @@ function authenticateUser() {
 };
 
 // ADD MODEL
-async function getSketchfabModelUrl() {
+async function getSketchfabModel() {
     $("#missingInfo").html("");
     let info = await getModelInfo();
     if (info == undefined) {
@@ -119,9 +119,10 @@ async function getModelInfo() {
 };
 
 /**
+ * Checks if the given url has already been used or not
  * 
  * @param {String} modelURL 
- * @returns {boolean} if the given url has been used yet or not
+ * @returns {boolean} boolean of the result of the url check
  */
 function checkUrl(modelURL) {
     let isUsed = false;

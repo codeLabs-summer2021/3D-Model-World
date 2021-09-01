@@ -1,3 +1,9 @@
+import SketchfabIntegration from "./sketchfabIntegration.js";
+import { modelLayer } from './layers.js';
+import {
+    addModel,
+} from '../index.js';
+const sketchfabIntegration = new SketchfabIntegration();
 
 export const addModelToLocalStorage = (info) => {
     // Get the current data in local stoage
@@ -17,7 +23,6 @@ export const addModelToLocalStorage = (info) => {
 };
 
 export const removeModelToLocalStorage = (modelURL) => {
-    console.log('remove from LS')
     // Get the current data in local stoage
     let mapInstance = JSON.parse(localStorage.getItem('MapInstance1'));
 
@@ -38,4 +43,25 @@ export const localStorageSetUp = () => {
         localStorage.setItem('MapInstance1', JSON.stringify([]));
     }
     JSON.parse(localStorage.getItem('MapInstance1'));
+};
+
+export const checkLocalStorage = () => {
+    // Get the current data in local stoage
+    let mapInstance = JSON.parse(localStorage.getItem('MapInstance1'));
+
+    // For each model in local storage add to the map
+    console.log('checking each model')
+    for (let model of mapInstance) {
+        getSketchfabModelFromLocalStorage(model);
+    }
+
+};
+
+const getSketchfabModelFromLocalStorage = async (info) => {
+    console.log('check');
+    // Fetch model will load model from sketchfab link
+    let modelScene = await sketchfabIntegration.fetchModel(info.url);
+    if (modelScene != null) {
+        addModel(modelLayer(modelScene, info.coordinates, info.size, info.name, info.url));
+    }
 };

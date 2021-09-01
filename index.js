@@ -10,10 +10,14 @@ import {
   menuClick,
   loadModelList
 } from './src/menu.js';
-import { localStorageSetUp } from './src/localStorage.js'
+import {
+  localStorageSetUp,
+  checkLocalStorage
+} from './src/localStorage.js'
 
 // Start localStoage
 localStorageSetUp();
+checkLocalStorage();
 
 // Start Map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';

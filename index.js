@@ -9,6 +9,12 @@ import {
 import { menuClick } from './src/menu';
 import { loadModelList } from './src/menu.js';
 
+// Inital LocalStorage control
+if (!localStorage.getItem('MapInstance1')) {
+  localStorage.setItem('MapInstance1', JSON.stringify([]));
+}
+JSON.parse(localStorage.getItem('MapInstance1'));
+
 // Start map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
@@ -54,7 +60,7 @@ map.on('style.load', function () {
 
 // MAP FUNCTIONALITY
 // Adding new model to the map
-let modelArray = [];
+export let modelArray = [];
 export function addModel(model) {
   map.addLayer(model);
   modelArray.push(model);

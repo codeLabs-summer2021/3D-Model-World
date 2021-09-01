@@ -3,8 +3,10 @@ import { modelLayer } from './layers.js';
 import {
     addModel,
     removeModel,
-    map
+    map,
+    modelArray
 } from '../index.js';
+import { addModelToLocalStorage } from './localStorage.js';
 
 export function menuClick() {
     $("#modelList").hide();
@@ -13,7 +15,7 @@ export function menuClick() {
     $("#authenticate").on("click", authenticateUser);
     $("#addModel").on("click", getSketchfabModelUrl);
     loggedIn();
-}
+};
 
 const sketchfabIntegration = new SketchfabIntegration();
 
@@ -25,7 +27,7 @@ function loggedIn() {
         $("#loadModel").show();
         $("#modelList").show();
     }
-}
+};
 
 // LOGIN
 function authenticateUser() {
@@ -37,7 +39,7 @@ function authenticateUser() {
         $("#loadModel").show();
         $("#modelList").show();
     }
-}
+};
 
 // ADD MODEL
 async function getSketchfabModelUrl() {
@@ -49,10 +51,11 @@ async function getSketchfabModelUrl() {
     // Fetch model will load model from sketchfab link
     let modelScene = await sketchfabIntegration.fetchModel(info[0]);
     if (modelScene != null) {
-        addModel(modelLayer(modelScene, info[3], info[2], info[1]));
+        addModelToLocalStorage(info);
+        addModel(modelLayer(modelScene, info[3], info[2], info[1], info[0]));
         clearAddModel();
     }
-}
+};
 
 async function getModelInfo() {
     let modelURL = $("#modelUrl").val();
@@ -60,7 +63,12 @@ async function getModelInfo() {
         $("#missingInfo").html("Sketchfab Model URL cannot be empty!");
         $("#missingInfo").css("color", "red");
         return;
+    } else if (checkUrl(modelURL)) {
+        $("#missingInfo").html("That url is already used.");
+        $("#missingInfo").css("color", "red");
+        return;
     }
+
     let name = $("#modelName").val();
     if (name === '') {
         $("#missingInfo").html("Please enter a name!");
@@ -105,7 +113,23 @@ async function getModelInfo() {
         return;
     }
     return [modelURL, name, size, [long, lat]];
-}
+};
+
+/**
+ * 
+ * @param {String} modelURL 
+ * @returns {boolean} if the given url has been used yet or not
+ */
+function checkUrl(modelURL) {
+    let isUsed = false;
+    for (let model of modelArray) {
+        if (modelURL === model.getUrl()) {
+            isUsed = true;
+            break;
+        }
+    }
+    return isUsed;
+};
 
 function clearAddModel() {
     $('#modelUrl').val('');
@@ -113,7 +137,7 @@ function clearAddModel() {
     $('#modelSize').val('1');
     $('#modelLat').val('');
     $('#modelLong').val('');
-}
+};
 
 
 // MODEL LIST
@@ -143,4 +167,4 @@ export function loadModelList(modelArray) {
         modelDiv.appendChild(deleteBtn);
         modelList.appendChild(modelDiv);
     }
-}
+};

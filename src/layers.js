@@ -35,10 +35,11 @@ export const buildingLayer = {
  * @param {string} name of the model
  * @returns An object with all needed properties for the model layer. 
  */
-export function modelLayer(scene, coordinates, size, name) {
-  // Variable for georeferencing on the map
+export function modelLayer(scene, coordinates, size, name, url) {
+  let modelUrl = url;
   let modelName = name;
   let modelSize = size;
+  // Variable for georeferencing on the map
   let modelOrigin = coordinates;
   let modelAltitude = 0;
   let modelRotate = [Math.PI / 2, 0, 0];
@@ -114,11 +115,15 @@ export function modelLayer(scene, coordinates, size, name) {
       };
     },
 
+    getUrl() {
+      return modelUrl;
+    },
+
     getName() {
       return modelName;
     },
 
-    getLngLat(){
+    getLngLat() {
       return modelOrigin;
     },
 

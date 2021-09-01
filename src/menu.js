@@ -6,7 +6,10 @@ import {
     map,
     modelArray
 } from '../index.js';
-import { addModelToLocalStorage } from './localStorage.js';
+import {
+    addModelToLocalStorage,
+    removeModelToLocalStorage
+} from './localStorage.js';
 
 export function menuClick() {
     $("#modelList").hide();
@@ -160,6 +163,7 @@ export function loadModelList(modelArray) {
         });
         deleteBtn.textContent = 'Delete';
         deleteBtn.addEventListener('click', (e) => {
+            removeModelToLocalStorage(model.getUrl());
             removeModel(model);
         });
         modelDiv.appendChild(modelName);

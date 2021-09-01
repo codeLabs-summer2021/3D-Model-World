@@ -6,16 +6,16 @@ import {
   skyLayer,
   buildingLayer
 } from './src/layers.js';
-import { menuClick } from './src/menu';
-import { loadModelList } from './src/menu.js';
+import {
+  menuClick,
+  loadModelList
+} from './src/menu.js';
+import { localStorageSetUp } from './src/localStorage.js'
 
-// Inital LocalStorage control
-if (!localStorage.getItem('MapInstance1')) {
-  localStorage.setItem('MapInstance1', JSON.stringify([]));
-}
-JSON.parse(localStorage.getItem('MapInstance1'));
+// Start localStoage
+localStorageSetUp();
 
-// Start map
+// Start Map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
   container: 'map',
@@ -76,7 +76,7 @@ export function removeModel(model) {
     }
   };
   loadModelList(modelArray);
-}
+};
 
 // Right-Click (Move Model)
 let popup = new mapboxgl.Popup({ anchor: 'left' });

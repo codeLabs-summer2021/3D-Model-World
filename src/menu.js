@@ -32,16 +32,6 @@ export function menuClick() {
 // LOGIN
 function authenticateUser() {
     sketchfabIntegration.authenticate();
-    sketchfabIntegration.checkToken();
-    
-    // TODO Error 401
-    // TODO: currently getting a "Failed to download model from Sketchfab TypeError: Cannot read properties of undefined (reading 'url')"
-    // The checkLocalStorage is called before the authentication is finished.
-    // I'm unsure if this is an issue with having two istances of the app one on "Localhost:8080" and the other on the live site 
-    let token = sketchfabIntegration.token;
-    if (!token) {
-        checkLocalStorage();
-    }
 };
 
 // ADD MODEL

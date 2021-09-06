@@ -8,44 +8,54 @@ import {
 } from '../index.js';
 import {
     addModelToLocalStorage,
-    removeModelToLocalStorage
+    removeModelToLocalStorage,
+    checkLocalStorage
 } from './localStorage.js';
 const sketchfabIntegration = new SketchfabIntegration();
 
 export function menuClick() {
-    $("#modelList").hide();
-    $("#loadModel").hide();
-    document.getElementById("dropdown").classList.toggle("show");
-    $("#authenticate").on("click", authenticateUser);
-    $("#addModel").on("click", getSketchfabModel);
-    loggedIn();
-};
-
-
-function loggedIn() {
-    sketchfabIntegration.checkToken();
-    let token = sketchfabIntegration.token;
-    if (token != null) {
-        $("#sketchfab").hide();
-        $("#loadModel").show();
-        $("#modelList").show();
+    // If NOT logged in
+    if (!localStorage.getItem('sb_token')) {
+        document.getElementById("dropdown").classList.toggle("show");
+        $("#authenticate").on("click", authenticateUser);
+        $("#modelList").hide();
+        $("#loadModel").hide();
+        return;
     }
+    // If logged in
+    document.getElementById("dropdown").classList.toggle("show");
+    $("#addModel").on("click", getSketchfabModel);
+    $("#sketchfab").hide();
+
 };
 
 // LOGIN
 function authenticateUser() {
     sketchfabIntegration.authenticate();
-    // After authentication, check for token 
     sketchfabIntegration.checkToken();
-    if (sketchfabIntegration.token != null) {
-        $("#sketchfab").hide();
-        $("#loadModel").show();
-        $("#modelList").show();
+    
+    // TODO Error 401
+    // TODO: currently getting a "Failed to download model from Sketchfab TypeError: Cannot read properties of undefined (reading 'url')"
+    // The checkLocalStorage is called before the authentication is finished.
+    // I'm unsure if this is an issue with having two istances of the app one on "Localhost:8080" and the other on the live site 
+    let token = sketchfabIntegration.token;
+    if (!token) {
+        checkLocalStorage();
     }
 };
 
 // ADD MODEL
 async function getSketchfabModel() {
+    sketchfabIntegration.checkToken();
+    let token = sketchfabIntegration.token;
+    if (!token) {
+        $('#overlay').css('display', 'block');
+        $('#token-error').css('display', 'block');
+        $('#dimiss-btn').css('display', 'block');
+        $('#dimiss-btn').on('click', dismissNotifications);
+        return;
+    }
+
     $("#missingInfo").html("");
     let info = await getModelInfo();
     if (info == undefined) {
@@ -58,6 +68,10 @@ async function getSketchfabModel() {
         addModel(modelLayer(modelScene, info[3], info[2], info[1], info[0]));
         clearAddModel();
     }
+};
+
+const dismissNotifications = () => {
+    $('#overlay').css('display', 'none');
 };
 
 async function getModelInfo() {

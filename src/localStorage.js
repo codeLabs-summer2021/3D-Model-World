@@ -39,10 +39,16 @@ export const removeModelToLocalStorage = (modelURL) => {
 
 // Inital LocalStorage control
 export const localStorageSetUp = () => {
+    // Set up Map instance
     if (!localStorage.getItem('MapInstance1')) {
         localStorage.setItem('MapInstance1', JSON.stringify([]));
     }
     JSON.parse(localStorage.getItem('MapInstance1'));
+
+    // check if logged in
+    if (localStorage.getItem('sb_token')) {
+        checkLocalStorage();
+    }
 };
 
 export const checkLocalStorage = () => {
@@ -50,18 +56,20 @@ export const checkLocalStorage = () => {
     let mapInstance = JSON.parse(localStorage.getItem('MapInstance1'));
 
     // For each model in local storage add to the map
-    console.log('checking each model')
+    sketchfabIntegration.checkToken();
     for (let model of mapInstance) {
         getSketchfabModelFromLocalStorage(model);
     }
-
 };
 
 const getSketchfabModelFromLocalStorage = async (info) => {
-    console.log('check');
     // Fetch model will load model from sketchfab link
     let modelScene = await sketchfabIntegration.fetchModel(info.url);
     if (modelScene != null) {
         addModel(modelLayer(modelScene, info.coordinates, info.size, info.name, info.url));
     }
+};
+
+const dismissNotifications = () => {
+    $('#overlay').css('display', 'none');
 };

@@ -71,5 +71,5 @@ const getSketchfabModelFromLocalStorage = async (info) => {
 };
 
 const dismissNotifications = () => {
-    $('#overlay').css('display', 'none');
+    $('#pop-up-messsage').css('display', 'none');
 };

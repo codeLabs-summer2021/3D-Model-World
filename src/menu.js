@@ -16,22 +16,23 @@ const sketchfabIntegration = new SketchfabIntegration();
 export function menuClick() {
     // If NOT logged in
     if (!localStorage.getItem('sb_token')) {
-        document.getElementById("dropdown").classList.toggle("show");
-        $("#authenticate").on("click", authenticateUser);
-        $("#modelList").hide();
-        $("#loadModel").hide();
+        document.getElementById("menu").classList.toggle("show");
+        $("#loginBtn").on("click", authenticateUser);
+        $("#menuList").hide();
+        $("#menuLoad").hide();
         return;
     }
     // If logged in
-    document.getElementById("dropdown").classList.toggle("show");
-    $("#addModel").on("click", getSketchfabModel);
-    $("#sketchfab").hide();
+    document.getElementById("menu").classList.toggle("show");
+    $("#loadBtn").on("click", getSketchfabModel);
+    $("#menuLogin").hide();
 
 };
 
 // LOGIN
 function authenticateUser() {
     sketchfabIntegration.authenticate();
+    sketchfabIntegration.checkToken();
 };
 
 // ADD MODEL
@@ -39,14 +40,14 @@ async function getSketchfabModel() {
     sketchfabIntegration.checkToken();
     let token = sketchfabIntegration.token;
     if (!token) {
-        $('#overlay').css('display', 'block');
+        $('#pop-up-messsage').css('display', 'block');
         $('#token-error').css('display', 'block');
         $('#dimiss-btn').css('display', 'block');
         $('#dimiss-btn').on('click', dismissNotifications);
         return;
     }
 
-    $("#missingInfo").html("");
+    $("#loadMissingInfo").html("");
     let info = await getModelInfo();
     if (info == undefined) {
         return;
@@ -61,62 +62,53 @@ async function getSketchfabModel() {
 };
 
 const dismissNotifications = () => {
-    $('#overlay').css('display', 'none');
+    $('#pop-up-messsage').css('display', 'none');
 };
 
 async function getModelInfo() {
-    let modelURL = $("#modelUrl").val();
+    let modelURL = $("#urlInput").val();
     if (modelURL === '') {
-        $("#missingInfo").html("Sketchfab Model URL cannot be empty!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Sketchfab Model URL cannot be empty!");
         return;
     } else if (checkUrl(modelURL)) {
-        $("#missingInfo").html("That url is already used.");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("That url is already used.");
         return;
     }
 
-    let name = $("#modelName").val();
+    let name = $("#nameInput").val();
     if (name === '') {
-        $("#missingInfo").html("Please enter a name!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a name!");
         return;
     }
-    let size = $("#modelSize").val();
+    let size = $("#sizeInput").val();
     if (size === '') {
-        $("#missingInfo").html("Please enter a size!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a size!");
         return;
     }
     size = parseFloat(size);
     if (size <= 0) {
-        $("#missingInfo").html("Please enter a size!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a size!");
         return;
     }
 
-    let lat = $("#modelLat").val();
+    let lat = $("#latInput").val();
     if (lat === '') {
-        $("#missingInfo").html("Please enter a latitude!<br> Click on the screen to select a point!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a latitude!<br> Click on the screen to select a point!");
         return;
     }
     lat = parseFloat(lat);
     if (lat < -90 || lat > 90) {
-        $("#missingInfo").html("Please enter a latitude between -90 & 90!<br> Click on the screen to select a point!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a latitude between -90 & 90!<br> Click on the screen to select a point!");
         return;
     }
-    let long = $("#modelLong").val();
+    let long = $("#longInput").val();
     if (long === '') {
-        $("#missingInfo").html("Please enter a longitude!<br> Click on the screen to select a point!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a longitude!<br> Click on the screen to select a point!");
         return;
     }
     long = parseFloat(long);
     if (long < -180 || long > 180) {
-        $("#missingInfo").html("Please enter a latitude between -180 and 180!<br> Click on the screen to select a point!");
-        $("#missingInfo").css("color", "red");
+        $("#loadMissingInfo").html("Please enter a latitude between -180 and 180!<br> Click on the screen to select a point!");
         return;
     }
     return [modelURL, name, size, [long, lat]];
@@ -140,11 +132,11 @@ function checkUrl(modelURL) {
 };
 
 function clearAddModel() {
-    $('#modelUrl').val('');
-    $('#modelName').val('');
-    $('#modelSize').val('1');
-    $('#modelLat').val('');
-    $('#modelLong').val('');
+    $('#urlInput').val('');
+    $('#nameInput').val('');
+    $('#sizeInput').val('1');
+    $('#latInput').val('');
+    $('#longInput').val('');
 };
 
 

@@ -107,7 +107,7 @@ class SketchfabIntegration {
 
     async fetchModel(url) {
         // Bring up modal with 'Loading' text
-        $('#overlay').css('display', 'block');
+        $('#pop-up-messsage').css('display', 'block');
         $('#dimiss-btn').on('click', this._resetSketchfabUI);
 
         let modelZipUrl;
@@ -143,8 +143,8 @@ class SketchfabIntegration {
     }
 
     _resetSketchfabUI() {
-        // Hide the overlay and any error messages
-        $('#overlay').css('display', 'none');
+        // Hide the pop-up-messsage and any error messages
+        $('#pop-up-messsage').css('display', 'none');
         $('#download-error').css('display', 'none');
         $('#dimiss-btn').css('display', 'none');
         $('#unknown-error').css('display', 'none');

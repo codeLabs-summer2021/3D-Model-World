@@ -110,8 +110,8 @@ map.on('contextmenu', (e) => {
 });
 
 map.on('click', function (e) {
-  $("#modelLat").val(e.lngLat.lat);
-  $("#modelLong").val(e.lngLat.lng);
+  $("#latInput").val(e.lngLat.lat);
+  $("#longInput").val(e.lngLat.lng);
 });
 
 // Allowing the user to togglge the buildings

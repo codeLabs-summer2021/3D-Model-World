@@ -69,7 +69,3 @@ const getSketchfabModelFromLocalStorage = async (info) => {
         addModel(modelLayer(modelScene, info.coordinates, info.size, info.name, info.url));
     }
 };
-
-const dismissNotifications = () => {
-    $('#pop-up-messsage').css('display', 'none');
-};

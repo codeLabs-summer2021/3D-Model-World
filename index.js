@@ -29,9 +29,9 @@ map.on('style.load', function () {
   var nav = new mapboxgl.NavigationControl();
   map.addControl(nav, 'bottom-right');
   // Start menu
-  $("#menuBtn").on("click", menuClick);
+  document.getElementById("menuBtn").addEventListener("click", menuClick);
   // Toggle Buildings Button
-  $("#buildingBtn").on("click", toggelBuildings);
+  document.getElementById("buildingBtn").addEventListener("click", toggelBuildings);
   // Geocoder Searchbar
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -102,8 +102,8 @@ map.on('contextmenu', (e) => {
 });
 
 map.on('click', function (e) {
-  $("#modelLat").val(e.lngLat.lat);
-  $("#modelLong").val(e.lngLat.lng);
+  document.getElementById("modelLat").value = e.lngLat.lat;
+  document.getElementById("modelLong").value = e.lngLat.lng;
 });
 
 // Allowing the user to togglge the buildings

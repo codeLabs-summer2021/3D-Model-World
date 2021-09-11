@@ -107,8 +107,8 @@ class SketchfabIntegration {
 
     async fetchModel(url) {
         // Bring up modal with 'Loading' text
-        $('#overlay').css('display', 'block');
-        $('#dimiss-btn').on('click', this._resetSketchfabUI);
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('dimiss-btn').addEventListener('click', this._resetSketchfabUI);
 
         let modelZipUrl;
         try {
@@ -116,15 +116,15 @@ class SketchfabIntegration {
         } catch (e) {
             // Update modal with error
             console.error('Failed to download model from Sketchfab', e);
-            $('#download-error').css('display', 'block');
-            $('#dimiss-btn').css('display', 'block');
+            document.getElementById('download-error').style.display = 'block';
+            document.getElementById('dimiss-btn').style.display = 'block';
             return;
         }
 
         if (modelZipUrl == undefined) return;
 
         // Update modal with 'Loading model'
-        $('#fetch-success').css('display', 'block');
+        document.getElementById('fetch-success').style.display = 'block';
 
         let finalScene;
         try {
@@ -132,8 +132,8 @@ class SketchfabIntegration {
         } catch (e) {
             // Update modal with error 
             console.error('Failed to read model from Sketchfab', e);
-            $('#unknown-error').css('diplay', 'block');
-            $('#dimiss-btn').css('diplay', 'block');
+            document.getElementById('unknown-error').style.diplay = 'block';
+            document.getElementById('dimiss-btn').style.diplay = 'block';
             return;
         }
 
@@ -144,11 +144,11 @@ class SketchfabIntegration {
 
     _resetSketchfabUI() {
         // Hide the overlay and any error messages
-        $('#overlay').css('display', 'none');
-        $('#download-error').css('display', 'none');
-        $('#dimiss-btn').css('display', 'none');
-        $('#unknown-error').css('display', 'none');
-        $('#fetch-success').css('display', 'none');
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('download-error').style.display = 'none';
+        document.getElementById('dimiss-btn').style.display = 'none';
+        document.getElementById('unknown-error').style.display = 'none';
+        document.getElementById('fetch-success').style.display = 'none';
     }
 }
 

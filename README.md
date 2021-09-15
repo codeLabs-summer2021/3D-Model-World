@@ -44,7 +44,7 @@
 
 ### Motivation
 
-There have been a lot of attempts to build something like this. See for example Sketchfab's [experiment](https://labs.sketchfab.com/experiments/map/). And Polycam's [map](https://twitter.com/PolycamAI/status/1402366028852568065).
+There have been a lot of attempts to build something like this. See for example Sketchfab's [experiment](https://labs.sketchfab.com/experiments/map/) and Polycam's [map](https://twitter.com/PolycamAI/status/1402366028852568065).
 
 None of these attempts have ever shown the 3D objects embedded directly on the map - just a 2D map and a separate 3D view. This makes it hard to understand and appreciate the scale of these 3D structures. A lot of times how they fit in with the landscape is a crucial part (think of landmarks like Stonehenge).
 

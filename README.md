@@ -24,10 +24,10 @@
     </li>
     <li><a href="#getting-started">Getting Started</a></li>
       <ul>
-        <li><a href="#to-install">To Install</a></li>
+        <li><a href="#install">Install</a></li>
       </ul>
       <ul>
-        <li><a href="#to-use">To use</a></li>
+        <li><a href="#use">Use</a></li>
       </ul>
     <li><a href="#features">Features</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -62,7 +62,7 @@ Besides just the prior attempts to make something like this there is a huge comm
 
 <!-- GETTING STARTED -->
 ## Getting Started
-### To Install
+### Install
 
 1. Clone the repo
    ```sh
@@ -77,7 +77,7 @@ Besides just the prior attempts to make something like this there is a huge comm
    npm start
    ```
 
-### To Use
+### Use
 
 To use the app, follow these simple steps:
 

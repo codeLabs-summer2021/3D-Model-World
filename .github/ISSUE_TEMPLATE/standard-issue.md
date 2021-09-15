@@ -1,6 +1,6 @@
 ---
 name: Standard Issue
-about: Describe this issue template's purpose here.
+about: Standard issue for a small to medium task
 title: ''
 labels: task
 assignees: ''

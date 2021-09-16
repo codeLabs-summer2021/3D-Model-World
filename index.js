@@ -6,10 +6,18 @@ import {
   skyLayer,
   buildingLayer
 } from './src/layers.js';
-import { menuClick } from './src/menu';
-import { loadModelList } from './src/menu.js';
+import {
+  menuClick,
+  loadModelList
+} from './src/menu.js';
+import {
+  localStorageSetUp
+} from './src/localStorage.js'
 
-// Start map
+// Start localStoage
+localStorageSetUp();
+
+// Start Map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsZWJtYyIsImEiOiJja3F1ZGh4eDgwM2pzMnBwYngwdHk4anNoIn0.ynFiLgiuvax1jiCqEozo_A';
 export const map = new mapboxgl.Map({
   container: 'map',
@@ -29,9 +37,9 @@ map.on('style.load', function () {
   var nav = new mapboxgl.NavigationControl();
   map.addControl(nav, 'bottom-right');
   // Start menu
-  $("#menuBtn").on("click", menuClick);
+  $('#menuBtn').on('click', menuClick);
   // Toggle Buildings Button
-  $("#buildingBtn").on("click", toggelBuildings);
+  $('#buildingBtn').on('click', toggelBuildings);
   // Geocoder Searchbar
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -54,7 +62,7 @@ map.on('style.load', function () {
 
 // MAP FUNCTIONALITY
 // Adding new model to the map
-let modelArray = [];
+export let modelArray = [];
 export function addModel(model) {
   map.addLayer(model);
   modelArray.push(model);
@@ -70,7 +78,7 @@ export function removeModel(model) {
     }
   };
   loadModelList(modelArray);
-}
+};
 
 // Right-Click (Move Model)
 let popup = new mapboxgl.Popup({ anchor: 'left' });
@@ -102,8 +110,8 @@ map.on('contextmenu', (e) => {
 });
 
 map.on('click', function (e) {
-  $("#modelLat").val(e.lngLat.lat);
-  $("#modelLong").val(e.lngLat.lng);
+  $('#latInput').val(e.lngLat.lat);
+  $('#longInput').val(e.lngLat.lng);
 });
 
 // Allowing the user to togglge the buildings
@@ -111,10 +119,10 @@ function toggelBuildings() {
   let btnColor = document.getElementById('buildingBtn');
   // let mapLayer = map.getLayer('route');
   if (!map.getLayer(buildingLayer.id)) {
-    btnColor.style.backgroundColor = "#808080";
+    btnColor.style.backgroundColor = '#808080';
     map.addLayer(buildingLayer);
   } else {
-    btnColor.style.backgroundColor = "#FFFFFF";
+    btnColor.style.backgroundColor = '#FFFFFF';
     map.removeLayer(buildingLayer.id);
   }
 };

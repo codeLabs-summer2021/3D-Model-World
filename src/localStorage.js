@@ -1,4 +1,4 @@
-import SketchfabIntegration from "./sketchfabIntegration.js";
+import SketchfabIntegration from './sketchfabIntegration.js';
 import { modelLayer } from './layers.js';
 import {
     addModel,

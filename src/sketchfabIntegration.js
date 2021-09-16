@@ -10,17 +10,17 @@ function checkStatus(response) {
         throw new Error(`HTTP ${response.status} - ${response.statusText}`);
     }
     return response;
-}
+};
 
 function getExtension(filename) {
     return filename.toLowerCase().split('.').pop();
-}
+};
 
 async function getFileUrl(file) {
     const blob = await file.async('blob');
     const url = URL.createObjectURL(blob);
     return url;
-}
+};
 
 class SketchfabIntegration {
     constructor() {
@@ -28,8 +28,8 @@ class SketchfabIntegration {
     }
 
     authenticate() {
-        window.open(AUTHENTICATION_URL, "_self");
-    }
+        window.open(AUTHENTICATION_URL, '_self');
+    };
 
     async readZip(zipUrl) {
         const response = await fetch(zipUrl);
@@ -67,7 +67,7 @@ class SketchfabIntegration {
         });
 
         return scene;
-    }
+    };
 
     checkToken() {
         const url = new URL(window.location);
@@ -81,7 +81,7 @@ class SketchfabIntegration {
         }
         // Load token from local storage
         this.token = localStorage.getItem('sb_token');
-    }
+    };
 
     async getModelDownloadUrl(inputUrl) {
         // Extract the model ID from the URL
@@ -103,12 +103,12 @@ class SketchfabIntegration {
         const response = await fetch(metadataUrl, options);
         const metadata = await response.json();
         return metadata.gltf.url;
-    }
+    };
 
     async fetchModel(url) {
         // Bring up modal with 'Loading' text
-        $('#pop-up-messsage').css('display', 'block');
-        $('#dimiss-btn').on('click', this._resetSketchfabUI);
+        document.getElementById('pop-up-messsage').classList.toggle('hidden');
+        $('#dimiss-btn').on('click', this.dismissNotifications);
 
         let modelZipUrl;
         try {
@@ -116,15 +116,15 @@ class SketchfabIntegration {
         } catch (e) {
             // Update modal with error
             console.error('Failed to download model from Sketchfab', e);
-            $('#download-error').css('display', 'block');
-            $('#dimiss-btn').css('display', 'block');
+            document.getElementById('download-error').classList.toggle('hidden');
+            document.getElementById('dimiss-btn').classList.toggle('hidden');
             return;
         }
 
         if (modelZipUrl == undefined) return;
 
         // Update modal with 'Loading model'
-        $('#fetch-success').css('display', 'block');
+        document.getElementById('fetch-success').classList.toggle('hidden');
 
         let finalScene;
         try {
@@ -132,24 +132,20 @@ class SketchfabIntegration {
         } catch (e) {
             // Update modal with error 
             console.error('Failed to read model from Sketchfab', e);
-            $('#unknown-error').css('diplay', 'block');
-            $('#dimiss-btn').css('diplay', 'block');
+            document.getElementById('unknown-error').classList.toggle('hidden');
+            document.getElementById('dimiss-btn').classList.toggle('hidden');
             return;
         }
 
         // Dismiss modal 
-        this._resetSketchfabUI();
+        this.dismissNotifications();
         return finalScene;
-    }
+    };
 
-    _resetSketchfabUI() {
+    dismissNotifications() {
         // Hide the pop-up-messsage and any error messages
-        $('#pop-up-messsage').css('display', 'none');
-        $('#download-error').css('display', 'none');
-        $('#dimiss-btn').css('display', 'none');
-        $('#unknown-error').css('display', 'none');
-        $('#fetch-success').css('display', 'none');
-    }
-}
+        document.getElementById('pop-up-messsage').classList.toggle('hidden');
+    };
+};
 
 export default SketchfabIntegration;

@@ -37,9 +37,9 @@ map.on('style.load', function () {
   var nav = new mapboxgl.NavigationControl();
   map.addControl(nav, 'bottom-right');
   // Start menu
-  $("#menuBtn").on("click", menuClick);
+  $('#menuBtn').on('click', menuClick);
   // Toggle Buildings Button
-  $("#buildingBtn").on("click", toggelBuildings);
+  $('#buildingBtn').on('click', toggelBuildings);
   // Geocoder Searchbar
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -110,8 +110,8 @@ map.on('contextmenu', (e) => {
 });
 
 map.on('click', function (e) {
-  $("#latInput").val(e.lngLat.lat);
-  $("#longInput").val(e.lngLat.lng);
+  $('#latInput').val(e.lngLat.lat);
+  $('#longInput').val(e.lngLat.lng);
 });
 
 // Allowing the user to togglge the buildings
@@ -119,10 +119,10 @@ function toggelBuildings() {
   let btnColor = document.getElementById('buildingBtn');
   // let mapLayer = map.getLayer('route');
   if (!map.getLayer(buildingLayer.id)) {
-    btnColor.style.backgroundColor = "#808080";
+    btnColor.style.backgroundColor = '#808080';
     map.addLayer(buildingLayer);
   } else {
-    btnColor.style.backgroundColor = "#FFFFFF";
+    btnColor.style.backgroundColor = '#FFFFFF';
     map.removeLayer(buildingLayer.id);
   }
 };

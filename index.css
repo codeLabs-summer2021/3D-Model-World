@@ -67,11 +67,7 @@ body {
     color: red;
 }
 
-#fetch-success, #download-error, #unknown-error, #dimiss-btn, #token-error {
-    display: none;
-}
-
-#pop-up-messsage {
+.hidden {
     display: none;
 }
 

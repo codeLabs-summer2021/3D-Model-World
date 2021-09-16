@@ -108,7 +108,6 @@ class SketchfabIntegration {
     async fetchModel(url) {
         // Bring up modal with 'Loading' text
         document.getElementById('pop-up-messsage').classList.toggle('hidden');
-        $('#dimiss-btn').on('click', this.dismissNotifications);
 
         let modelZipUrl;
         try {
@@ -118,6 +117,7 @@ class SketchfabIntegration {
             console.error('Failed to download model from Sketchfab', e);
             document.getElementById('download-error').classList.toggle('hidden');
             document.getElementById('dimiss-btn').classList.toggle('hidden');
+            document.getElementById('dimiss-btn').onclick = this.dismissNotifications;
             return;
         }
 
@@ -133,7 +133,8 @@ class SketchfabIntegration {
             // Update modal with error 
             console.error('Failed to read model from Sketchfab', e);
             document.getElementById('unknown-error').classList.toggle('hidden');
-            document.getElementById('dimiss-btn').classList.toggle('hidden');
+            document.getElementById('dimiss-btn').classList.toggle('hidden'); // <- this isn't loading
+            document.getElementById('dimiss-btn').onclick = this.dismissNotifications;
             return;
         }
 
@@ -143,8 +144,22 @@ class SketchfabIntegration {
     };
 
     dismissNotifications() {
-        // Hide the pop-up-messsage and any error messages
-        document.getElementById('pop-up-messsage').classList.toggle('hidden');
+        // Determine which elements are showing and toggle them off
+        if (!document.getElementById('pop-up-messsage').classList.toggle('hidden')) {
+            document.getElementById('pop-up-messsage').classList.toggle('hidden');
+        }
+        if (!document.getElementById('fetch-success').classList.toggle('hidden')) {
+            document.getElementById('fetch-success').classList.toggle('hidden');
+        }
+        if (!document.getElementById('unknown-error').classList.toggle('hidden')) {
+            document.getElementById('unknown-error').classList.toggle('hidden');
+        }
+        if (!document.getElementById('download-error').classList.toggle('hidden')) {
+            document.getElementById('download-error').classList.toggle('hidden');
+        }
+        if (!document.getElementById('dimiss-btn').classList.toggle('hidden')) {
+            document.getElementById('dimiss-btn').classList.toggle('hidden');
+        }
     };
 };
 

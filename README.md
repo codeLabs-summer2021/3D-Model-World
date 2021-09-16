@@ -2,7 +2,7 @@
 <p align="center">
   <h1 align="center">3D Model World</h1>
   <p align="center">
-    "A real world enviroment to place, view and share all your 3D models."
+    "A real world environment to place, view and share all your 3D models."
     <br />
     <a href="https://3d-virtual-museum.netlify.app/"><strong>View Live App »</strong></a>
     <br />

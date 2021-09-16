@@ -12,27 +12,30 @@
 
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- map -->
     <div id="map">Map not loaded</div>
 
+    <!-- menu -->
     <button id="menuBtn"><i class="fa fa-bars"></i></button>
-    <div id="dropdown" class="dropdown-content">
-        <a id='sketchfab'>
+    <div id="menu" class="menu-content">
+        <a id='menuLogin'>
             <p>------ LOGIN ------</p>
-            <button id="authenticate">Login to Sketchfab</button>
+            <button id="loginBtn">Login to Sketchfab</button>
         </a>
-        <a id="loadModel">
+        <a id="menuLoad">
             <p>---- ADD MODEL ----</p>
-            <div id="link">Link:<input id="modelUrl" type="url" /></div>
-            <div id="name">Name:<input id="modelName" type="text" /></div>
-            <div id="size">Size:<input id="modelSize" type="number" min="0" max="100" value="1" step=".1" /></div>
-            <div id="lat">Latitude:<input class="coordinates" id="modelLat" type="number" min="-90" max="90"
+            <div id="loadUrl">Link:<input id="urlInput" type="url" /></div>
+            <div id="loadName">Name:<input id="nameInput" type="text" /></div>
+            <div id="loadSize">Size:<input id="sizeInput" type="number" min="0" max="100" value="1" step=".1" /></div>
+            <div id="loadLat">Latitude:<input class="coordinates" id="latInput" type="number" min="-90" max="90"
                     step=".0000000000001" /></div>
-            <div id='lng'>Longitude:<input class="coordinates" id="modelLong" type="number" min="-180" max="180"
+            <div id='loadLng'>Longitude:<input class="coordinates" id="longInput" type="number" min="-180" max="180"
                     step=".0000000000001" /></div>
-            <p id="missingInfo"></p>
-            <button id="addModel">Add</button>
+            <p class="error" id="loadMissingInfo"></p>
+            <button id="loadBtn">Add</button>
         </a>
-        <a id="modelList">
+        <a id="menuList">
             <p>--- MODEL LIST ---</p>
             <div id="list">
                 <div></div>
@@ -40,21 +43,28 @@
         </a>
     </div>
 
-    <div id="overlay">
+    <!-- building button -->
+    <button id="buildingBtn"><i class="fa fa-home"></i></button>
+
+    <!-- pop-up messsage -->
+    <div class="hidden" id="pop-up-messsage">
         <h3>
             Getting model from Sketchfab...
         </h3>
-        <h3 id="fetch-success">
+        <h3 class="success hidden" id="fetch-success">
             Successfully fetched model! Loading into the map now...
         </h3>
-        <h3 class="error" id="download-error">
+        <h3 class="error hidden" id="download-error">
             Failed to download this model. Make sure you have access to download this model on Sketchfab.
         </h3>
-        <h3 class="error" id="unknown-error">
+        <h3 class="error hidden" id="token-error">
+            Error with the Sketchfab token.
+        </h3>
+        <h3 class="error hidden" id="unknown-error">
             Failed to load this model, unknown error. Check the browser console for more details.
         </h3>
         <center>
-            <button id="dimiss-btn">Dismiss</button>
+            <button class="hidden" id="dimiss-btn">Dismiss</button>
         </center>
     </div>
 

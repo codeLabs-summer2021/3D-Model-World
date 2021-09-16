@@ -41,7 +41,7 @@ async function getSketchfabModel() {
         document.getElementById('pop-up-messsage').classList.toggle('hidden');
         document.getElementById('token-error').classList.toggle('hidden');
         document.getElementById('dimiss-btn').classList.toggle('hidden');
-        $('#dimiss-btn').on('click', dismissNotifications);
+        document.getElementById('dimiss-btn').onclick = dismissNotifications;
         return;
     }
 
@@ -61,6 +61,8 @@ async function getSketchfabModel() {
 
 const dismissNotifications = () => {
     document.getElementById('pop-up-messsage').classList.toggle('hidden');
+    document.getElementById('token-error').classList.toggle('hidden');
+    document.getElementById('dimiss-btn').classList.toggle('hidden');
 };
 
 async function getModelInfo() {

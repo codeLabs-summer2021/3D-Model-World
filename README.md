@@ -115,7 +115,7 @@ Terrain is active so you can see your models compared to the real world envirome
 
 ### Buildings
 
-Building toggle is also an option for those who are curious how a model fairs against realt building.
+Building toggle is also an option for those who are curious how a model fairs compared to real buildings.
 <br/>
 <img src="https://user-images.githubusercontent.com/35348015/133440998-fecfad43-4dc6-4742-9cca-eefc97522d92.gif" width="400">
 
@@ -123,13 +123,13 @@ Building toggle is also an option for those who are curious how a model fairs ag
 
 Type in a location and see the camera move smoothly to the destination.
 <br/>
-<img src="https://user-images.githubusercontent.com/35348015/133440456-6287ed5c-26a3-44c1-b5bf-cca342a4e47c.gif" width="400">
+<img src="https://user-images.githubusercontent.com/35348015/133440456-6287ed5c-26a3-44c1-b5bf-cca342a4e47c.gif" width="500">
 
 ### Compass
 
 Got turned upside down? Simply reorient yourself with the compass button.
 <br/>
-<img src="https://user-images.githubusercontent.com/35348015/133440861-14988303-3ddf-4813-94bc-42c92b0d81f4.gif" width="400">
+<img src="https://user-images.githubusercontent.com/35348015/133440861-14988303-3ddf-4813-94bc-42c92b0d81f4.gif" width="500">
 
 <!-- ROADMAP -->
 ## Roadmap

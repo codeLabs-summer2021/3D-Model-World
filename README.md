@@ -2,7 +2,7 @@
 <p align="center">
   <h1 align="center">3D Model World</h1>
   <p align="center">
-    "A real world environment to place, view and share all your 3D models."
+    "A real world environment to place, view, and share all your 3D models."
     <br />
     <a href="https://3d-virtual-museum.netlify.app/"><strong>View Live App »</strong></a>
     <br />
@@ -44,11 +44,11 @@
 
 ### Motivation
 
-There have been a lot of attempts to build something like this. See for example Sketchfab's [experiment](https://labs.sketchfab.com/experiments/map/) and Polycam's [map](https://twitter.com/PolycamAI/status/1402366028852568065).
+There have been a lot of attempts to build something similar like this. _(See for example Sketchfab's [experiment](https://labs.sketchfab.com/experiments/map/) and Polycam's [map](https://twitter.com/PolycamAI/status/1402366028852568065))_.
 
-None of these attempts have ever shown the 3D objects embedded directly on the map - just a 2D map and a separate 3D view. This makes it hard to understand and appreciate the scale of these 3D structures. A lot of times how they fit in with the landscape is a crucial part (think of landmarks like Stonehenge).
+Our team thought it would be nice to expand on these great ideas and merge the 2D maps and 3D objects together. Doing this will let the user show the 3D objects embedded directly on a single interactable map. The great benefit here is that all objects can now be compared and viewed in a single environment. This also provides a true appreciation of scale.
 
-Besides just the prior attempts to make something like this there is a huge community of people scanning 3D objects, (see the hashtags #objectcapture or #1scanaday on Twitter). As of right now these people don't have an effeciant way to show off all their scans in a single enviroment; 3D Model World fixed that.
+Besides just the prior attempts to make something like this there is a huge community of people scanning 3D objects, (see the hashtags #objectcapture or #1scanaday on Twitter). As of right now these people don't have an efficient way to show off all their scans in a single environment; 3D Model World fixed that.
 
 ### Built With
 
@@ -91,7 +91,7 @@ To use the app, follow these simple steps:
 
 ### Load Models
 
-Loading models is as simple as copy/paste. Just click on the `Menu` button and navigate to the `Add Model` section. Now simply copy the Sketchfab URL of the desired model and paste it in the ‘URL’ box. Fill out the rest of the information about the model and click ‘Add’. The App will the let you know the loading progress and whether it was successful or not. From here you can display your model or load another.
+Loading models is as simple as copy/paste. Just click on the `Menu` button and navigate to the `Add Model` section. Now simply copy the Sketchfab URL of the desired model and paste it in the ‘URL’ box. Fill out the rest of the information about the model and click ‘Add’. The App will let you know the loading progress and whether it was successful or not. From here you can display your model or load another.
 <br/>
 <img src="https://user-images.githubusercontent.com/35348015/133439930-5232f04c-8c9d-4bac-8ead-ab260d5ee485.gif" width="300">
 
@@ -109,7 +109,7 @@ Moving a model is as easy as right-clicking.
 
 ### Terrain
 
-Terrain is active so you can see your models compared to the real world enviroments.
+Terrain is active so you can see your models compared to the real world environments.
 <br/>
 <img src="https://user-images.githubusercontent.com/35348015/133442092-03a61438-b221-4afb-9237-d56a453a8209.gif" width="400">
 

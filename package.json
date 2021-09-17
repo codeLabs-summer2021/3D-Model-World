@@ -1,7 +1,7 @@
 {
-  "name": "codelabs-summer-2021",
+  "name": "3d-model-world",
   "version": "1.0.0",
-  "description": "Virtual 3D Museum",
+  "description": "A real world environment to place, view, and share all your 3D models.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OmarShehata/codelabs-summer-2021.git"
+    "url": "git+https://github.com/codeLabs-summer2021/3D-Model-World.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/OmarShehata/codelabs-summer-2021/issues"
+    "url": "https://github.com/codeLabs-summer2021/3D-Model-World/issues"
   },
-  "homepage": "https://github.com/OmarShehata/codelabs-summer-2021#readme",
+  "homepage": "https://github.com/codeLabs-summer2021/3D-Model-World#readme",
   "devDependencies": {
     "snowpack": "^3.8.2"
   },

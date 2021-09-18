@@ -64,6 +64,8 @@ Besides just the prior attempts to make something like this there is a huge comm
 ## Getting Started
 ### Install
 
+_Make sure you have at least `npm: 7.#.#` and `node: 14.#.#`_
+
 1. Clone the repo
    ```sh
    git clone https://github.com/codeLabs-summer2021/3D-Model-World.git

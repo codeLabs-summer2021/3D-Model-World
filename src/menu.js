@@ -17,15 +17,15 @@ export function menuClick() {
     // If NOT logged in
     if (!localStorage.getItem('sb_token')) {
         document.getElementById('menu').classList.toggle('show');
-        $('#loginBtn').on('click', authenticateUser);
-        $('#menuList').hide();
-        $('#menuLoad').hide();
+        document.getElementById('loginBtn').addEventListener('click', authenticateUser);
+        document.getElementById('menuList').style.display = 'none';
+        document.getElementById('menuLoad').style.display = 'none';
         return;
     }
     // If logged in
     document.getElementById('menu').classList.toggle('show');
-    $('#loadBtn').on('click', getSketchfabModel);
-    $('#menuLogin').hide();
+    document.getElementById('loadBtn').addEventListener('click', getSketchfabModel);
+    document.getElementById('menuLogin').style.display = 'none';
 };
 
 // LOGIN
@@ -45,7 +45,7 @@ async function getSketchfabModel() {
         return;
     }
 
-    $('#loadMissingInfo').html('');
+    document.getElementById('loadMissingInfo').innerHTML = '';
     let info = await getModelInfo();
     if (info == undefined) {
         return;
@@ -66,49 +66,50 @@ const dismissNotifications = () => {
 };
 
 async function getModelInfo() {
-    let modelURL = $('#urlInput').val();
+    let modelURL = document.getElementById('urlInput').value;
+    let loadMissingInfoEl = document.getElementById('loadMissingInfo');
     if (modelURL === '') {
-        $('#loadMissingInfo').html('Sketchfab Model URL cannot be empty!');
+        loadMissingInfoEl.innerHTML = 'Sketchfab Model URL cannot be empty!';
         return;
     } else if (checkUrl(modelURL)) {
-        $('#loadMissingInfo').html('That url is already used.');
+        loadMissingInfoEl.innerHTML = 'That url is already used.';
         return;
     }
 
-    let name = $('#nameInput').val();
+    let name = document.getElementById('nameInput').value;
     if (name === '') {
-        $('#loadMissingInfo').html('Please enter a name!');
+        loadMissingInfoEl.innerHTML = 'Please enter a name!';
         return;
     }
-    let size = $('#sizeInput').val();
+    let size = document.getElementById('sizeInput').value;
     if (size === '') {
-        $('#loadMissingInfo').html('Please enter a size!');
+        loadMissingInfoEl.innerHTML = 'Please enter a size!';
         return;
     }
     size = parseFloat(size);
     if (size <= 0) {
-        $('#loadMissingInfo').html('Please enter a size!');
+        loadMissingInfoEl.innerHTML = 'Please enter a size!';
         return;
     }
 
-    let lat = $('#latInput').val();
+    let lat = document.getElementById('latInput').value;
     if (lat === '') {
-        $('#loadMissingInfo').html('Please enter a latitude!<br> Click on the screen to select a point!');
+        loadMissingInfoEl.innerHTML = 'Please enter a latitude!<br> Click on the screen to select a point!';
         return;
     }
     lat = parseFloat(lat);
     if (lat < -90 || lat > 90) {
-        $('#loadMissingInfo').html('Please enter a latitude between -90 & 90!<br> Click on the screen to select a point!');
+        loadMissingInfoEl.innerHTML = 'Please enter a latitude between -90 & 90!<br> Click on the screen to select a point!';
         return;
     }
-    let long = $('#longInput').val();
+    let long = document.getElementById('longInput').value;
     if (long === '') {
-        $('#loadMissingInfo').html('Please enter a longitude!<br> Click on the screen to select a point!');
+        loadMissingInfoEl.innerHTML = 'Please enter a longitude!<br> Click on the screen to select a point!';
         return;
     }
     long = parseFloat(long);
     if (long < -180 || long > 180) {
-        $('#loadMissingInfo').html('Please enter a latitude between -180 and 180!<br> Click on the screen to select a point!');
+        loadMissingInfoEl.innerHTML = 'Please enter a latitude between -180 and 180!<br> Click on the screen to select a point!';
         return;
     }
     return [modelURL, name, size, [long, lat]];
@@ -132,11 +133,11 @@ function checkUrl(modelURL) {
 };
 
 function clearAddModel() {
-    $('#urlInput').val('');
-    $('#nameInput').val('');
-    $('#sizeInput').val('1');
-    $('#latInput').val('');
-    $('#longInput').val('');
+    document.getElementById('urlInput').value = '';
+    document.getElementById('nameInput').value = '';
+    document.getElementById('sizeInput').value = '1';
+    document.getElementById('latInput').value = '';
+    document.getElementById('longInput').value = '';
 };
 
 

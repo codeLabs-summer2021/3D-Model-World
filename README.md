@@ -4,7 +4,7 @@
   <p align="center">
     "A real world environment to place, view, and share all your 3D models."
     <br />
-    <a href="https://3d-virtual-museum.netlify.app/"><strong>View Live App »</strong></a>
+    <a href="https://3d-model-world.netlify.app/"><strong>View Live App »</strong></a>
     <br />
   </p>
 </p>

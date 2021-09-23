@@ -22,10 +22,10 @@
     "snowpack": "^3.8.2"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-geocoder": "^4.7.2",
+    "@mapbox/mapbox-gl-geocoder": "^4.7.4",
     "@snowpack/plugin-webpack": "^3.0.0",
     "jszip": "^3.7.0",
     "mapbox-gl": "^2.3.1",
-    "three": "^0.130.1"
+    "three": "^0.132.2"
   }
 }
